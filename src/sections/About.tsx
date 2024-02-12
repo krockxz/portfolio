@@ -28,17 +28,17 @@ function About() {
       <div className="about-grid">
         <div className="about-grid-info">
           <p className="about-grid-info-text">
-          Embarking on the exciting journey of full-stack development, I am a beginner with a passion for creating seamless digital experiences. My curiosity drives me to explore the depth and breadth of coding, from front-end aesthetics to back-end logic. As I continue to learn and grow, I am committed to bringing ideas to life through code, one line at a time.
+          Embarking on the exhilarating path of full-stack development, I am a novice enthusiast driven by a fervent desire to craft flawless digital encounters. Fueled by my insatiable curiosity, I delve into the intricacies of coding, encompassing both the visual allure of front-end design and the logical prowess of back-end development. With an unwavering commitment to constant learning and personal growth, I am dedicated to materializing concepts into reality through the art of coding, meticulously crafting each line with precision and passion.
           </p>
           <p className="about-grid-info-text">
           </p>
 
           <p className="about-grid-info-text">
-          Venturing into the dynamic world of full-stack development, I am a novice with a keen interest in building integrated digital solutions.
+          Embarking on a journey in full-stack development, I am an enthusiastic beginner with a strong desire to create comprehensive digital solutions. Let's connect and explore the endless possibilities of the tech world together!
           </p>
     
-          <p className="about-grid-info-text">
-            Here are a few technologies I’ve been working with recently:
+          <p className="about-grid-info-text">  
+          Lately, I've been delving into the following technologies to enhance my skillset and expertise:
           </p>
           <ul className="about-grid-info-list">
             <li className="about-grid-info-list-item">React</li>

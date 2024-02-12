@@ -11,7 +11,7 @@ function Projects() {
       projectName: "Kume",
       projectLink: "https://rich-lingerie-lamb.cyclic.app/",
       projectDescription:
-      "This MERN stack e-commerce site utilizes MongoDB, Express.js, React, and Node.js. Users can explore, compare, and purchase products, with Firebase Firestore supporting personal lists. The platform prioritizes user-friendly experiences and optimal performance.",
+      "Passionate about creating seamless online shopping experiences, this MERN stack e-commerce site leverages the power of MongoDB, Express.js, React, and Node.js. With a focus on user-friendly interfaces and optimal performance, users can effortlessly explore, compare, and purchase products. Additionally, Firebase Firestore enhances the platform by providing support for personal lists, ensuring a personalized and convenient shopping experience.",
       projectTech: [
         "React",
         "Redux Toolkit", 

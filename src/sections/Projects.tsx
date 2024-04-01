@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 function Projects() {
   const projectsData = [
     {
-      image: "/project1.png",
+      image: "project1.png",
       projectName: "Kume",
       projectLink: "https://rich-lingerie-lamb.cyclic.app/",
       projectDescription:
@@ -26,7 +26,7 @@ function Projects() {
       },
     },
     {
-      image: "/project2.png",
+      image: "project2.png",
       projectName: "File system Organizer",
       projectLink: "https://github.com/krockxz/file-organiser-nodejs",
       projectDescription:
@@ -41,7 +41,7 @@ function Projects() {
       },
     },
     {
-      image: "/project3.png",
+      image: "project3.png",
       projectName: "Github Autocommit Bot",
       projectLink: "https://github.com/krockxz/github-bot",
       projectDescription:

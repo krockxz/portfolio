@@ -18,7 +18,7 @@ function Contact() {
       <h2 className="contact-title">What&apos;s Next?</h2>
       <h2 className="contact-sub-title">Get In Touch</h2>
       <p className="contact-text">
-      Always seeking new opportunities! My digital door is open for queries and friendly hellos. I'll respond to you as soon as possible!
+      Always seeking new opportunities! My digital door is open for queries and friendly hellos. I will respond to you as soon as possible.
       </p>
       <div className="contact-cta">
         <Button link="mailto:kunalrc.workmail7@gmail.com" text="Say Hi" />

@@ -34,11 +34,11 @@ function About() {
           </p>
 
           <p className="about-grid-info-text">
-          Embarking on a journey in full-stack development, I am an enthusiastic beginner with a strong desire to create comprehensive digital solutions. Let's connect and explore the endless possibilities of the tech world together!
+          Embarking on a journey in full-stack development, I am an enthusiastic beginner with a strong desire to create comprehensive digital solutions. We can connect and explore the endless possibilities of the tech world together!
           </p>
     
           <p className="about-grid-info-text">  
-          Lately, I've been delving into the following technologies to enhance my skillset and expertise:
+          Lately, I have been delving into the following technologies to enhance my skillset and expertise:
           </p>
           <ul className="about-grid-info-list">
             <li className="about-grid-info-list-item">React</li>

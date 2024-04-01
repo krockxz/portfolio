@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 function Projects() {
   const projectsData = [
     {
-      image: "project1.png",
+      image: "/project1.png",
       projectName: "Kume",
       projectLink: "https://rich-lingerie-lamb.cyclic.app/",
       projectDescription:
@@ -26,7 +26,7 @@ function Projects() {
       },
     },
     {
-      image: "project2.png",
+      image: "/project2.png",
       projectName: "File system Organizer",
       projectLink: "https://github.com/krockxz/file-organiser-nodejs",
       projectDescription:
@@ -36,22 +36,22 @@ function Projects() {
         "Node.js",
       ],
       projectExternalLinks: {
-        github: "",
+        github: "https://github.com/krockxz/file-organiser-nodejs",
         externalLink: "",
       },
     },
     {
-      image: "project3.png",
+      image: "/project3.png",
       projectName: "Github Autocommit Bot",
       projectLink: "https://github.com/krockxz/github-bot",
       projectDescription:
       "Implemented a sophisticated repository management system by harnessing the power of the GitHub API for seamless repository access and updates, alongside the GitPython library for local Git repository management. This advanced setup facilitated scheduled commits with flexible frequency options, ensuring consistent repository activity and enhancing version control workflows. Empowering users with tailored automation for effortless repository maintenance and heightened project collaboration.",
       projectTech: [
-        "React",
-        "Redux Toolkit",
+        "Python",
+        "OS Module",
       ],
       projectExternalLinks: {
-        github: "",
+        github: "https://github.com/krockxz/github-bot",
         externalLink: "",
       },
     },

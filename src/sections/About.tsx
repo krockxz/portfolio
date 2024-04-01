@@ -42,14 +42,14 @@ function About() {
           </p>
           <ul className="about-grid-info-list">
             <li className="about-grid-info-list-item">React</li>
-            <li className="about-grid-info-list-item">React Native</li>
+            <li className="about-grid-info-list-item">Python</li>
             <li className="about-grid-info-list-item">Next.js</li>
             <li className="about-grid-info-list-item">Typescript</li>
-            <li className="about-grid-info-list-item">Redux Toolkit</li>
+            <li className="about-grid-info-list-item">Git</li>
             <li className="about-grid-info-list-item">Node.js</li>
-            <li className="about-grid-info-list-item">Elasticsearch</li>
-            <li className="about-grid-info-list-item">Kibana</li>
-            <li className="about-grid-info-list-item">CSS</li>
+            <li className="about-grid-info-list-item">Java</li>
+            <li className="about-grid-info-list-item">SpringBoot</li>
+            <li className="about-grid-info-list-item">Django</li>
           </ul>
         </div>
         <div className="about-grid-photo">

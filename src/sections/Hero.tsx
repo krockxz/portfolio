@@ -53,10 +53,7 @@ function Hero() {
       >
         I&apos;m a software engineer with expertise in creating top-notch
         software solutions and experiences. My current focus is on developing products that are
-        centered around user needs, as part of the team at&nbsp;
-        <Link href="https://www.aidash.com/" target="_blank" className="link">
-          AiDash.
-        </Link>
+        centered around user needs.
       </motion.p>
       <motion.div
         className="hero-button"
@@ -70,7 +67,7 @@ function Hero() {
       >
         <Button
           text="Check out my latest work"
-          link="" //work 
+          link="https://kunalrc-portfolio.vercel.app/" //work 
         />
       </motion.div>
     </div>

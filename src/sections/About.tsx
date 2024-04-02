@@ -28,15 +28,8 @@ function About() {
       <div className="about-grid">
         <div className="about-grid-info">
           <p className="about-grid-info-text">
-          Embarking on the exhilarating path of full-stack development, I am a novice enthusiast driven by a fervent desire to craft flawless digital encounters. Fueled by my insatiable curiosity, I delve into the intricacies of coding, encompassing both the visual allure of front-end design and the logical prowess of back-end development. With an unwavering commitment to constant learning and personal growth, I am dedicated to materializing concepts into reality through the art of coding, meticulously crafting each line with precision and passion.
+          Entering full-stack development, I am passionate about creating seamless user experiences. Motivated by a strong curiosity, I explore coding's depth, balancing front-end aesthetics with back-end functionality. Committed to continuous learning, I aim to convert ideas into practical solutions, focusing on code quality and efficiency
           </p>
-          <p className="about-grid-info-text">
-          </p>
-
-          <p className="about-grid-info-text">
-          Embarking on a journey in full-stack development, I am an enthusiastic beginner with a strong desire to create comprehensive digital solutions. We can connect and explore the endless possibilities of the tech world together!
-          </p>
-    
           <p className="about-grid-info-text">  
           Lately, I have been delving into the following technologies to enhance my skillset and expertise:
           </p>
@@ -48,8 +41,8 @@ function About() {
             <li className="about-grid-info-list-item">Git</li>
             <li className="about-grid-info-list-item">Node.js</li>
             <li className="about-grid-info-list-item">Java</li>
+            <li className="about-grid-info-list-item">C++</li>
             <li className="about-grid-info-list-item">SpringBoot</li>
-            <li className="about-grid-info-list-item">Django</li>
           </ul>
         </div>
         <div className="about-grid-photo">

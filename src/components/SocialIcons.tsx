@@ -3,7 +3,6 @@ import React from "react";
 import {
   FiGithub,
   FiInstagram,
-  FiYoutube,
   FiLinkedin,
   FiTwitter,
 } from "react-icons/fi";
@@ -12,11 +11,6 @@ import { motion } from "framer-motion";
 function SocialIcons() {
   const socialLinks = [
     { name: "Github", icon: <FiGithub />, link: "https://github.com/krockxz" },
-    {
-      name: "Youtube",
-      icon: <FiYoutube />,
-      link: "https://www.youtube.com/@kunal7331",
-    },
     {
       name: "LinkedIn",
       icon: <FiLinkedin />,

@@ -29,7 +29,8 @@ function Footer() {
         target="_blank"
         className="footer-link"
       >
-        <span className="footer-info">Built by Kunal Roy Choudhury.</span>
+        <span className="footer-info">Built by Kunal Roy Choudhury
+        | Thanks to Brittany Chiang</span>
         {githubInfo && (
           <div className="footer-git">
             <div className="footer-git-item">

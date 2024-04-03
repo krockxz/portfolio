@@ -20,21 +20,21 @@ function Experience() {
       start: "January 2024",
       end: "July 2024",
       shortDescription: [
-        "As the elect a team of board members and executive committee members to organize and execute multiple events throughout the year.",
-        "Additionally, I secured sponsorships from reputable brands to support our events.",
-        "Overall, it was a rewarding experience that allowed me to develop my leadership skills while contributing positively to the growth of the organization.",
+        "Designed and implemented RESTful APIs for data listing and retrieval, utilizing Java and Spring Boot, ensuring efficient data handling and service responsiveness.",
+        "Engineered paging functionalities to optimize data fetch performance for large datasets, leveraging Spring Data JPA for seamless integration with backend systems.",
+        "Crafted entity models and managed repositories, employing Spring Data for robust and scalable data access, supporting advanced query capabilities and pagination.",
       ],
     },
     {
-      name: "Power Grid Corporation",
-      role: "Project - Intern",
+      name: "Power Grid Corporation of India",
+      role: "Project Intern",
       url: "https://www.powergrid.in/",
       start: "June 2023",
       end: "July 2023",
       shortDescription: [
-        "Developed and maintained client websites using HTML, CSS, and JavaScript.",
+        "Leveraged Spring Boot's comprehensive ecosystem for rapid development, microservices architecture, and efficient data management",
         "Optimized website performance and ensured cross-browser compatibility",
-        "Collaborated with the design team to implement responsive web designs.",
+        "Utilized Spring Security for authentication and authorization, ensuring the integrity and protection of client data in enterprise-level deployments.",
       ],
     },
     {

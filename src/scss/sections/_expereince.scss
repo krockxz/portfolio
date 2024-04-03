@@ -135,6 +135,7 @@
       .exp-slider {
         display: flex;
         overflow-x: scroll;
+        gap: 1rem;
         &::before {
           display: none;
         }

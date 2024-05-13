@@ -1,8 +1,12 @@
 import Button from "@/components/Button";
-import Link from "next/link";
-import React from "react";
 import { motion } from "framer-motion";
+import React, { useState } from 'react';
+import CopyButton from "@/components/CopyButton"; 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Hero() {
+  const [copied, setCopied] = useState(false);
   return (
     <div className="hero">
       <motion.h1
@@ -64,12 +68,10 @@ function Hero() {
           ease: "easeInOut",
           delay: 1.65,
         }}
-      >
-        <Button
-          text="Check out my latest work"
-          link="https://kunalrc-portfolio.vercel.app/" //work 
-        />
-      </motion.div>
+      >  <ToastContainer />
+         <Button text="Check out my latest work" link="https://kunalrc-portfolio.vercel.app/" style={{ marginRight: '10px' }} />
+         <CopyButton text="npx kunalrc" className="btn" />
+    </motion.div>
     </div>
   );
 }

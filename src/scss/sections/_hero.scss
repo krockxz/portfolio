@@ -41,3 +41,34 @@
     }
   }
 }
+.hero-button {
+  display: flex;
+  align-items: center; /* Center buttons vertically */
+  gap: 20px; /* Adjust gap between buttons */
+  margin-top: 2rem;
+}
+
+.btn {
+  background-color: #0D1117; /* Dark background */
+  color: #58a6ff; /* Bright text color */
+  border: 1px solid #58a6ff; /* Border color */
+  padding: 10px 20px; /* Padding around the text */
+  font-size: 16px; /* Text size */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  outline: none; /* No outline */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn:hover {
+  background-color: #161B22; /* Slightly lighter background on hover */
+  box-shadow: 0 0 8px #58a6ff; /* Glowing effect */
+}
+
+
+
+
+
+

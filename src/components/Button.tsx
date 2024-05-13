@@ -1,12 +1,30 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import 'react-toastify/dist/ReactToastify.css';
 
-function Button({ text, link }: { text: string; link: string }) {
+interface ButtonProps {
+  text: string;
+  link?: string; // Optional because a button might not always navigate
+  onClick?: () => void; // Optional because a button might not always have an onClick handler
+  style?: React.CSSProperties; // Using React's built-in type for style objects
+  className?: string; // Optional for additional CSS class names
+}
+
+function Button({ text, link, onClick, style, className }: ButtonProps) {
+  if (link) {
+    return (
+      <Link href={link} passHref legacyBehavior>
+        <a className={`btn ${className}`} style={style}>{text}</a>
+      </Link>
+    );
+  }
+
   return (
-    <Link className="btn" href={link}>
+    <button className={`btn ${className}`} onClick={onClick} style={style}>
       {text}
-    </Link>
+    </button>
   );
 }
 
 export default Button;
+

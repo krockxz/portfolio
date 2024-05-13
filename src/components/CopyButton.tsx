@@ -40,7 +40,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({ text, className }) => {
       onClick={() => copyToClipboard(text)}
     >
       {isCopied ? <CheckIcon /> : <CopyIcon />}
-      <span>{isCopied ? "Copied" : "Copy npx command"}</span>
+      <span>{isCopied ? "Copied" : "npx kunalrc"}</span>
     </button>
   );
 };

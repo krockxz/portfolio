@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { toast } from 'react-toastify'; // Ensure this path is correct
+import { toast } from 'react-toastify';
 
 export const CopyIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor">
@@ -23,7 +23,7 @@ interface CopyButtonProps {
 const CopyButton: React.FC<CopyButtonProps> = ({ text, className }) => {
   const [isCopied, setIsCopied] = useState(false);
 
-  const copyToClipboard = (text: string) => {
+  const copyToClipboard = () => {
     navigator.clipboard.writeText(text).then(() => {
       setIsCopied(true);
       toast.success('Command copied to clipboard!');
@@ -36,11 +36,11 @@ const CopyButton: React.FC<CopyButtonProps> = ({ text, className }) => {
 
   return (
     <button 
-      className={`btn ${className} ${isCopied ? 'copied' : ''}`} // Add 'copied' class for dynamic styles
-      onClick={() => copyToClipboard(text)}
+      className={`copy-btn ${className} ${isCopied ? 'copied' : ''}`}
+      onClick={copyToClipboard}
     >
       {isCopied ? <CheckIcon /> : <CopyIcon />}
-      <span>{isCopied ? "Copied" : "npx kunalrc"}</span>
+      <span>{isCopied ? "Copied" : text}</span>
     </button>
   );
 };

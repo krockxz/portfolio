@@ -18,12 +18,6 @@ function Button({ text, link, onClick, style, className }: ButtonProps) {
       </Link>
     );
   }
-
-  return (
-    <button className={`btn ${className}`} onClick={onClick} style={style}>
-      {text}
-    </button>
-  );
 }
 
 export default Button;

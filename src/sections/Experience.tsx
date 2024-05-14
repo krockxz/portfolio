@@ -7,10 +7,16 @@ function Experience() {
   useEffect(() => {
     const transformSelected = () => {
       const underline = document.querySelector<HTMLElement>(".underline");
-      underline!.style.top = `${selected * 2.5}rem`;
+      const items = document.querySelectorAll(".exp-slider-item");
+      let topPosition = 0;
+      for (let i = 0; i < selected; i++) {
+        topPosition += items[i].clientHeight; // Calculate the top position based on actual height
+      }
+      underline!.style.top = `${topPosition}px`; // Use px instead of rem for precision
     };
     transformSelected();
   }, [selected]);
+  
 
   const expereinces = [
     {

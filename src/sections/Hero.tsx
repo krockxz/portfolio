@@ -15,8 +15,8 @@ function Hero() {
   };
   
   return (
-    <div className="hero">
-      <div className="hero-content">
+    <div className="hero-content">
+      <div className="">
         <motion.h1
           className="hero-title"
           initial={{ opacity: 0, y: 5 }}
@@ -119,17 +119,17 @@ function Hero() {
       <motion.div 
         className="scroll-down-indicator"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.2, duration: 0.5 }}
-        whileHover={{ y: 5 }}
         animate={{
+          opacity: 1,
           y: [0, 10, 0],
           transition: {
+            delay: 2.2,
             duration: 1.5,
             repeat: Infinity,
             repeatType: "loop"
           }
         }}
+        whileHover={{ y: 5 }}
       >
         <button onClick={scrollToAbout} aria-label="Scroll down">
           <FiArrowDown />

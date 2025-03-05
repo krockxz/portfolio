@@ -15,8 +15,8 @@ function Hero() {
   };
   
   return (
-    <div className="hero-content">
-      <div className="">
+    <div className="hero">
+      <div className="hero-content">
         <motion.h1
           className="hero-title"
           initial={{ opacity: 0, y: 5 }}

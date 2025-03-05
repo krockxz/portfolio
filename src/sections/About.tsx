@@ -31,18 +31,18 @@ function About() {
           Entering full-stack development, I am passionate about creating seamless user experiences. Motivated by a strong curiosity, I explore coding's depth, balancing front-end aesthetics with back-end functionality. Committed to continuous learning, I aim to convert ideas into practical solutions, focusing on code quality and efficiency
           </p>
           <p className="about-grid-info-text">  
-          Lately, I have been delving into the following technologies to enhance my skillset and expertise:
+          Lately, I have been working with the following technologies to build innovative solutions:
           </p>
           <ul className="about-grid-info-list">
+            <li className="about-grid-info-list-item">Golang</li>
             <li className="about-grid-info-list-item">React</li>
-            <li className="about-grid-info-list-item">Python</li>
-            <li className="about-grid-info-list-item">Next.js</li>
-            <li className="about-grid-info-list-item">Typescript</li>
-            <li className="about-grid-info-list-item">Git</li>
-            <li className="about-grid-info-list-item">Node.js</li>
-            <li className="about-grid-info-list-item">Java</li>
-            <li className="about-grid-info-list-item">C++</li>
-            <li className="about-grid-info-list-item">SpringBoot</li>
+            <li className="about-grid-info-list-item">Next.js & SSR</li>
+            <li className="about-grid-info-list-item">AWS</li>
+            <li className="about-grid-info-list-item">Django</li>
+            <li className="about-grid-info-list-item">MongoDB</li>
+            <li className="about-grid-info-list-item">MCP</li>
+            <li className="about-grid-info-list-item">Express</li>
+            <li className="about-grid-info-list-item">TypeScript</li>
           </ul>
         </div>
         <div className="about-grid-photo">

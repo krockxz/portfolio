@@ -1,19 +1,6 @@
 import React, { useState } from 'react';
-import { toast } from 'react-toastify';
-
-export const CopyIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="currentColor">
-    <path d="M0 0h24v24H0z" fill="none"/>
-    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-  </svg>
-);
-
-export const CheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 0 24 24" width="18px" fill="#00FF00">
-    <path d="M0 0h24v24H0z" fill="none"/>
-    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-  </svg>
-);
+import { motion } from 'framer-motion';
+import { FiTerminal, FiCheck } from 'react-icons/fi';
 
 interface CopyButtonProps {
   text: string;
@@ -26,22 +13,52 @@ const CopyButton: React.FC<CopyButtonProps> = ({ text, className }) => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(text).then(() => {
       setIsCopied(true);
-      toast.success('Command copied to clipboard!');
       setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
     }).catch(err => {
-      toast.error('Failed to copy!');
       console.error('Copy failed:', err);
     });
   };
 
   return (
-    <button 
+    <motion.button 
       className={`copy-btn ${className} ${isCopied ? 'copied' : ''}`}
       onClick={copyToClipboard}
+      whileHover={{ 
+        scale: 1.05,
+        transition: { duration: 0.2 }
+      }}
+      whileTap={{ scale: 0.95 }}
     >
-      {isCopied ? <CheckIcon /> : <CopyIcon />}
-      <span>{isCopied ? "Copied" : text}</span>
-    </button>
+      <motion.div 
+        className="copy-btn-content"
+        animate={isCopied ? { y: [-3, 0, -3], transition: { repeat: 2, duration: 0.5 } } : {}}
+      >
+        <motion.span className="copy-btn-icon">
+          {isCopied ? (
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1, rotate: [0, 15, 0] }}
+              transition={{ duration: 0.3 }}
+            >
+              <FiCheck color="#4ade80" />
+            </motion.div>
+          ) : (
+            <motion.div
+              whileHover={{ rotate: [0, -10, 10, -5, 0] }}
+              transition={{ duration: 0.4 }}
+            >
+              <FiTerminal />
+            </motion.div>
+          )}
+        </motion.span>
+        <motion.span 
+          className="copy-btn-text"
+          animate={isCopied ? { color: "#4ade80" } : {}}
+        >
+          {isCopied ? "Copied!" : text}
+        </motion.span>
+      </motion.div>
+    </motion.button>
   );
 };
 

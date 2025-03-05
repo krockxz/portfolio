@@ -22,23 +22,33 @@
         width: 300px;
         height: 2px;
         margin-left: 420px;
-        background-color: var(--lightest-navy);
+        background: linear-gradient(90deg, var(--theme-color), transparent);
+        border-radius: 4px;
       }
     }
   }
   &-container {
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 8rem;
     .project {
       position: relative;
       display: flex;
       justify-content: flex-end;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-5px);
+      }
+      
       &-image {
         &-container {
           position: relative;
           width: 450px;
           height: 225px;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px -15px var(--navy-shadow);
         }
         position: absolute;
         top: 0;
@@ -46,10 +56,11 @@
 
         &:hover {
           .project-image-overlay {
-            background-color: #00000000;
+            background-color: rgba(0, 0, 0, 0.1);
           }
           img {
             filter: none;
+            transform: scale(1.05);
           }
         }
         &-overlay {
@@ -58,12 +69,15 @@
           position: absolute;
           width: 100%;
           height: 100%;
-          background-color: rgba(200, 208, 217, 0.3);
+          background-color: rgba(0, 176, 255, 0.2);
+          mix-blend-mode: multiply;
+          border-radius: 8px;
         }
         img {
           z-index: 0;
-          filter: grayscale(100%);
-          transition: 0.3s ease-in-out;
+          filter: grayscale(100%) contrast(1.1);
+          transition: 0.4s ease-in-out;
+          object-fit: cover;
         }
       }
       &-info {
@@ -72,30 +86,42 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        gap: 0.5rem;
+        gap: 0.8rem;
         &-overline {
           color: var(--theme-color);
           font-family: var(--fira-code);
+          font-weight: 500;
+          letter-spacing: 0.05em;
         }
         &-title {
           width: max-content;
           color: var(--lightest-slate);
           font-size: var(--txlarge);
           font-family: var(--raleway);
+          font-weight: 700;
           cursor: pointer;
           transition: 0.3s ease-in-out;
+          a {
+            color: inherit;
+            text-decoration: none;
+            &:hover {
+              color: var(--theme-color);
+            }
+          }
           &:hover {
             color: var(--theme-color);
           }
         }
         &-description {
           background-color: var(--light-navy);
-          border-radius: 0.2rem;
+          border-radius: 8px;
+          box-shadow: 0 10px 30px -15px var(--navy-shadow);
           p {
             color: var(--light-slate);
             font-family: var(--raleway);
             padding: 2rem;
             text-align: end;
+            line-height: 1.5;
           }
         }
         &-tech-list {
@@ -103,9 +129,21 @@
           list-style-type: none;
           gap: 1rem;
           flex-wrap: wrap;
+          justify-content: flex-end;
           &-item {
             color: var(--light-slate);
-            font-family: var(--raleway);
+            font-family: var(--fira-code);
+            font-size: 0.85rem;
+            background-color: rgba(0, 176, 255, 0.08);
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            transition: 0.2s ease;
+            
+            &:hover {
+              color: var(--theme-color);
+              background-color: rgba(0, 176, 255, 0.15);
+              transform: translateY(-2px);
+            }
           }
         }
         &-links {
@@ -123,8 +161,12 @@
               color: var(--lightest-slate);
               transition: 0.3s ease-in-out;
               outline: 2px dashed transparent;
+              border-radius: 50%;
+              
               &:hover {
                 color: var(--theme-color);
+                background-color: rgba(0, 176, 255, 0.1);
+                transform: translateY(-3px);
               }
               &:focus {
                 outline-color: var(--theme-color);
@@ -143,6 +185,9 @@
         }
         .project-info {
           align-items: flex-start;
+          &-tech-list {
+            justify-content: flex-start;
+          }
           &-description {
             p {
               text-align: start;
@@ -160,15 +205,25 @@
         .project-info {
           width: 450px;
           height: 225px;
-          background-color: rgba(31, 10, 44, 0.592);
+          background-color: rgba(31, 41, 55, 0.85);
+          backdrop-filter: blur(5px);
           align-items: flex-start;
-          padding: 1rem;
+          padding: 1.5rem;
+          border-radius: 8px;
 
           &-description {
             background-color: transparent;
             p {
               padding: 0;
               text-align: start;
+              font-size: 0.9rem;
+            }
+          }
+          
+          &-tech-list {
+            justify-content: flex-start;
+            &-item {
+              font-size: 0.75rem;
             }
           }
         }

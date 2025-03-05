@@ -1,14 +1,14 @@
 :root {
-  --navy-shadow: rgba(25, 42, 86, 0.7);
-  --background-color: #001123;
+  --navy-shadow: rgba(15, 25, 50, 0.8);
+  --background-color: #0a0e17;
 
-  --lightest-navy: #2c3e50;
-  --light-navy: #34495e;
-  --dark-slate: #5c6d7e;
-  --slate: #7e8c9a;
-  --light-slate: #a3b1c2;
-  --lightest-slate: #c8d0d9;
-  --theme-color: #00bcd4;
+  --lightest-navy: #1e2a3a;
+  --light-navy: #1f2937;
+  --dark-slate: #4a5568;
+  --slate: #6b7280;
+  --light-slate: #9ca3af;
+  --lightest-slate: #d1d5db;
+  --theme-color: #00b0ff;
 }
 
 ::-moz-selection {

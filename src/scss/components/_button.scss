@@ -9,13 +9,31 @@
   font-size: var(--tsm);
   outline: none;
   gap: 15px;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(0, 176, 255, 0.1);
+    transition: width 0.3s ease;
+    z-index: -1;
+  }
 
   &:hover,
   &:focus {
-    background-color: #58a6ff; // Lighter background on hover
-    color: #0D1117; // Dark text on light background
-    border-color: #0D1117;
+    background-color: rgba(88, 166, 255, 0.15);
+    color: var(--theme-color);
+    border-color: var(--theme-color);
+    
+    &::before {
+      width: 100%;
+    }
   }
 }
 

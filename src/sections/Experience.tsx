@@ -20,6 +20,19 @@ function Experience() {
 
   const expereinces = [
     {
+      name: "Chargebee",
+      role: "Software Engineer Intern",
+      url: "https://www.chargebee.com/",
+      start: "September 2024",
+      end: "Present",
+      shortDescription: [
+        "Streamlined data migration with JOOQ-powered scheduler jobs, optimizing SQL query execution.",
+        "Built and optimized customer data migration, leveraging Env properties for Business Entity mapping.",
+        "Devised a sandbox data clearing system, reducing system overhead by a significant 30%.",
+        "Integrated an adaptive migration validation system in Vue.js, improving MBE configuration accuracy."
+      ],
+    },
+    {
       name: "AiDash",
       role: "Software Engineer- Intern",
       url: "https://www.linkedin.com/company/aidash/",
@@ -32,15 +45,16 @@ function Experience() {
       ],
     },
     {
-      name: "Power Grid Corporation of India",
+      name: "PowerGrid",
       role: "Project Intern",
       url: "https://www.powergrid.in/",
       start: "June 2023",
       end: "July 2023",
       shortDescription: [
-        "Leveraged Spring Boot's comprehensive ecosystem for rapid development, microservices architecture, and efficient data management",
-        "Optimized website performance and ensured cross-browser compatibility",
-        "Utilized Spring Security for authentication and authorization, ensuring the integrity and protection of client data in enterprise-level deployments.",
+        "Developed enterprise web applications using Spring Boot for rapid development and efficient microservices architecture.",
+        "Implemented responsive UI designs with cross-browser compatibility, ensuring optimal user experience across all platforms.",
+        "Integrated Spring Security for robust authentication and authorization, protecting sensitive client data in enterprise deployments.",
+        "Collaborated with cross-functional teams to deliver high-quality software solutions meeting business requirements."
       ],
     },
     {
@@ -94,7 +108,7 @@ function Experience() {
               <span>{expereinces[selected].role}</span>
               <span className="exp-details-position-company">
                 &nbsp;@&nbsp;
-                <Link href={expereinces[selected].url} className="link">
+                <Link href={expereinces[selected].url} className="link" target="_blank" rel="noopener noreferrer">
                   {expereinces[selected].name}
                 </Link>
               </span>

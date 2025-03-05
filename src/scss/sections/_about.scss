@@ -22,7 +22,8 @@
         width: 300px;
         height: 2px;
         margin-left: 220px;
-        background-color: var(--lightest-navy);
+        background: linear-gradient(90deg, var(--theme-color), transparent);
+        border-radius: 4px;
       }
     }
   }
@@ -88,7 +89,8 @@
         position: absolute;
         height: 350px;
         width: 350px;
-        background-color: rgba(200, 208, 217, 0.3);
+        background-color: rgba(0, 176, 255, 0.2);
+        mix-blend-mode: multiply;
         border-radius: 0.2rem;
       }
       .overlay-border {
@@ -109,7 +111,7 @@
         object-fit: cover;
         img {
           z-index: 0;
-          filter: grayscale(100%);
+          filter: grayscale(100%) contrast(1.1);
           transition: 0.3s ease-in-out;
           border-radius: 0.2rem;
         }

@@ -5,66 +5,183 @@
   align-items: flex-start;
   gap: 1rem;
   justify-content: center;
-  min-height: 60vh;
+  min-height: 80vh;
+  position: relative;
+  
+  &-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 1000px;
+  }
+  
   &-title {
     color: var(--theme-color);
     font-size: var(--tsm2);
     font-family: var(--fira-code);
+    position: relative;
+    padding-left: 5px;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 50%;
+      width: 3px;
+      height: 20px;
+      background-color: var(--theme-color);
+      transform: translateY(-50%);
+    }
   }
+  
   &-title-large {
     font-size: var(--tgiant);
     font-family: var(--raleway);
     color: var(--light-slate);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
+  
   &-title-sub {
     color: var(--lightest-slate);
+    margin-bottom: 10px;
   }
+  
   &-text {
     color: var(--slate);
     margin-right: 40%;
     font-size: var(--tlarge);
     letter-spacing: 0.07rem;
-    line-height: 1.6rem;
-    font-weight: 600;
+    line-height: 1.8rem;
+    font-weight: 500;
     font-family: var(--raleway);
+    position: relative;
+    
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.05),
+      transparent
+    );
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 2px solid var(--theme-color);
   }
+  
   &-button {
     margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
     .btn {
       padding: 1rem 2rem;
       font-size: var(--tsm1);
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-3px);
+      }
     }
   }
+  
+  .scroll-down-indicator {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--theme-color);
+      font-size: 2rem;
+      padding: 10px;
+      border-radius: 50%;
+      animation: bounce 2s infinite;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        transform: translateY(-3px);
+      }
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+  }
+  
   @media screen and (max-width: 768px) {
     &-text {
       width: 90%;
+      margin-right: 0;
+    }
+    
+    &-title-large {
+      font-size: calc(var(--tgiant) * 0.8);
     }
   }
 }
-.hero-button {
-  display: flex;
-  align-items: center; /* Center buttons vertically */
-  gap: 20px; /* Adjust gap between buttons */
-  margin-top: 2rem;
-}
 
 .btn {
-  background-color: #0D1117; /* Dark background */
-  color: #58a6ff; /* Bright text color */
-  border: 1px solid #58a6ff; /* Border color */
-  padding: 10px 20px; /* Padding around the text */
-  font-size: 16px; /* Text size */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  outline: none; /* No outline */
+  background-color: transparent;
+  color: var(--theme-color);
+  border: 1px solid var(--theme-color);
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(0, 188, 212, 0.1);
+    transition: width 0.3s ease;
+    z-index: -1;
+  }
+  
+  &:hover {
+    background-color: transparent;
+    box-shadow: 0 0 8px var(--theme-color);
+    
+    &::before {
+      width: 100%;
+    }
+  }
 }
 
-.btn:hover {
-  background-color: #161B22; /* Slightly lighter background on hover */
-  box-shadow: 0 0 8px #58a6ff; /* Glowing effect */
+.hero-button {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 2rem;
 }
 
 

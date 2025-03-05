@@ -8,21 +8,21 @@ function Projects() {
   const projectsData = [
     {
       image: "/project1.png",
-      projectName: "Kume",
-      projectLink: "https://rich-lingerie-lamb.cyclic.app/",
+      projectName: "Poker App",
+      projectLink: "https://poker-borg.onrender.com/",
       projectDescription:
-      "Passionate about creating seamless online shopping experiences, this MERN stack e-commerce site leverages the power of MongoDB, Express.js, React, and Node.js. With a focus on user-friendly interfaces and optimal performance, users can effortlessly explore, compare, and purchase products. Additionally, Firebase Firestore enhances the platform by providing support for personal lists, ensuring a personalized and convenient shopping experience.",
+      "A modern, interactive poker application built with a focus on real-time gameplay and user experience. This full-stack application features secure user authentication, real-time game state management, and an intuitive interface for seamless poker gameplay. Players can create or join lobbies, manage their stacks, and enjoy a responsive design that works across devices.",
       projectTech: [
         "React",
-        "Redux Toolkit", 
-        "CSS",
-        "Mongodb",
-        "Typescript",
-        "NextJs",
+        "Node.js",
+        "Express",
+        "Socket.io",
+        "MongoDB",
+        "JWT Authentication"
       ],
       projectExternalLinks: {
-        github: "",
-        externalLink: "",
+        github: "https://github.com/krockxz/Poker",
+        externalLink: "https://poker-borg.onrender.com/",
       },
     },
     {
@@ -69,7 +69,7 @@ function Projects() {
           hidden: { opacity: 0, y: 0 },
         }}
       >
-        <h2>Some Things I’ve Built</h2>
+        <h2>Featured Projects</h2>
       </motion.div>
       <div className="projects-container">
         {projectsData.map(
@@ -80,7 +80,7 @@ function Projects() {
             projectExternalLinks,
             projectName,
             projectTech,
-          }) => {
+          }, index) => {
             return (
               <motion.div
                 className="project"
@@ -93,16 +93,30 @@ function Projects() {
                   visible: { opacity: 1, y: -50 },
                   hidden: { opacity: 0, y: 0 },
                 }}
+                whileHover={{ 
+                  scale: 1.03,
+                  transition: { duration: 0.3 }
+                }}
               >
                 <div className="project-image">
                   <div className="project-image-overlay"></div>
                   <div className="project-image-container">
-                    <Image src={image} fill alt={projectName} quality={100} />
+                    <Image 
+                      src={image} 
+                      fill 
+                      alt={projectName} 
+                      quality={100}
+                      className="project-img" 
+                    />
                   </div>
                 </div>
                 <div className="project-info">
                   <p className="project-info-overline">Featured Project</p>
-                  <h3 className="project-info-title">{projectName}</h3>
+                  <h3 className="project-info-title">
+                    <Link href={projectLink} target="_blank" rel="noopener noreferrer">
+                      {projectName}
+                    </Link>
+                  </h3>
                   <div className="project-info-description">
                     <p>{projectDescription}</p>
                   </div>
@@ -114,22 +128,32 @@ function Projects() {
                     ))}
                   </ul>
                   <ul className="project-info-links">
-                    <li className="project-info-links-item">
-                      <Link
-                        href={projectExternalLinks.github}
-                        className="project-info-links-item-link"
-                      >
-                        <FiGithub />
-                      </Link>
-                    </li>
-                    <li className="project-info-links-item">
-                      <Link
-                        href={projectExternalLinks.externalLink}
-                        className="project-info-links-item-link"
-                      >
-                        <FiExternalLink />
-                      </Link>
-                    </li>
+                    {projectExternalLinks.github && (
+                      <li className="project-info-links-item">
+                        <Link
+                          href={projectExternalLinks.github}
+                          className="project-info-links-item-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${projectName} GitHub link`}
+                        >
+                          <FiGithub />
+                        </Link>
+                      </li>
+                    )}
+                    {projectExternalLinks.externalLink && (
+                      <li className="project-info-links-item">
+                        <Link
+                          href={projectExternalLinks.externalLink}
+                          className="project-info-links-item-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`${projectName} external link`}
+                        >
+                          <FiExternalLink />
+                        </Link>
+                      </li>
+                    )}
                   </ul>
                 </div>
               </motion.div>

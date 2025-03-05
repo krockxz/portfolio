@@ -5,6 +5,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { CgClose } from "react-icons/cg";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+
 function Navbar() {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [responsiveNavVisible, setResponsiveNavVisible] = useState(false);
@@ -12,6 +13,7 @@ function Navbar() {
     { name: "About", link: "/#about" },
     { name: "Experience", link: "/#experience" },
     { name: "Work", link: "/#work" },
+    { name: "Projects", link: "/#other-projects" },
     {
       name: "Contact",
       link: "/#contact",
@@ -61,8 +63,10 @@ function Navbar() {
             duration: 0.3,
             ease: "easeInOut",
           }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <Link href="kunalrc.com">
+          <Link href="/">
             <Logo />
           </Link>
         </motion.div>
@@ -106,9 +110,17 @@ function Navbar() {
                   ease: "easeInOut",
                   delay: 0.3 + index * 0.1,
                 }}
+                whileHover={{ y: -5 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <Link href={link} className="nav-items-list-item-link">
-                  {name}
+                  <motion.span
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                  >
+                    {name}
+                  </motion.span>
                 </Link>
               </motion.li>
             ))}
@@ -122,8 +134,10 @@ function Navbar() {
               ease: "easeInOut",
               delay: 0.6,
             }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <Button text="Resume" link="https://kunalrc-portfolio.vercel.app/resume.pdf" />
+            <Button text="Resume" link="/resume.pdf" target="_blank" />
           </motion.div>
         </div>
       </div>

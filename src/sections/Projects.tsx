@@ -27,31 +27,35 @@ function Projects() {
     },
     {
       image: "/project2.png",
-      projectName: "File system Organizer",
-      projectLink: "https://github.com/krockxz/file-organiser-nodejs",
+      projectName: "Climatic",
+      projectLink: "https://github.com/krockxz/Climatic",
       projectDescription:
-      "Crafted and deployed a dynamic file organization utility using Node.js, boasting tailored sorting functionalities including by name, extension, date, and type for both files and directories. Leveraged the robust Node.js File System (fs) module to seamlessly manage and manipulate file systems, streamlining the process of automated file organization for heightened efficiency and immaculate file structure. Elevating system cleanliness and productivity through innovative design and implementation.",
+      "An advanced weather application that provides real-time forecasts and climate data visualization. Features include interactive maps, personalized weather alerts, and historical climate data analysis. The application uses modern APIs to deliver accurate forecasts and adapts its interface based on current weather conditions for an immersive user experience.",
       projectTech: [
-        "Sockets",
+        "React",
         "Node.js",
+        "Weather APIs",
+        "Data Visualization"
       ],
       projectExternalLinks: {
-        github: "https://github.com/krockxz/file-organiser-nodejs",
+        github: "https://github.com/krockxz/Climatic",
         externalLink: "",
       },
     },
     {
       image: "/project3.png",
-      projectName: "Github Autocommit Bot",
-      projectLink: "https://github.com/krockxz/github-bot",
+      projectName: "Gostman",
+      projectLink: "https://github.com/krockxz/gostman",
       projectDescription:
-      "Implemented a sophisticated repository management system by harnessing the power of the GitHub API for seamless repository access and updates, alongside the GitPython library for local Git repository management. This advanced setup facilitated scheduled commits with flexible frequency options, ensuring consistent repository activity and enhancing version control workflows. Empowering users with tailored automation for effortless repository maintenance and heightened project collaboration.",
+      "A high-performance API testing tool built with Go, designed for microservice architectures. Gostman provides a powerful yet intuitive interface for creating, running, and automating complex API test scenarios. With support for various authentication methods, response validation, and comprehensive reporting, it streamlines the API development and testing workflow for modern applications.",
       projectTech: [
-        "Python",
-        "OS Module",
+        "Go",
+        "RESTful APIs",
+        "Testing",
+        "Microservices"
       ],
       projectExternalLinks: {
-        github: "https://github.com/krockxz/github-bot",
+        github: "https://github.com/krockxz/gostman",
         externalLink: "",
       },
     },

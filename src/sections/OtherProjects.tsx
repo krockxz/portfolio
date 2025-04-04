@@ -6,6 +6,24 @@ import Link from "next/link";
 function OtherProjects() {
   const otherProjectsData = [
     {
+      projectName: "File System Organiser",
+      projectDescription: "A dynamic file organization utility using Node.js with tailored sorting functionalities including by name, extension, date, and type. Streamlines the process of automated file organization for improved efficiency and better file structure management.",
+      projectTech: ["Node.js", "File System API", "Command Line Interface"],
+      projectExternalLinks: {
+        github: "https://github.com/krockxz/file-organiser-nodejs",
+        externalLink: "",
+      },
+    },
+    {
+      projectName: "Github Bot",
+      projectDescription: "A sophisticated repository management system using GitHub API for seamless repository access and updates. This tool automates scheduled commits with flexible frequency options, ensuring consistent repository activity and enhancing version control workflows.",
+      projectTech: ["Python", "GitHub API", "GitPython", "Automation"],
+      projectExternalLinks: {
+        github: "https://github.com/krockxz/github-bot",
+        externalLink: "",
+      },
+    },
+    {
       projectName: "EvoSource",
       projectDescription: "A comprehensive source code evolution tracking system that analyzes code changes over time, providing insights into development patterns and code quality metrics.",
       projectTech: ["Python", "Git API", "Data Analysis", "Visualization"],

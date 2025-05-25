@@ -4,28 +4,54 @@ import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgClose } from "react-icons/cg";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useInView } from 'react-intersection-observer';
 
 function Navbar() {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [responsiveNavVisible, setResponsiveNavVisible] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+  
   const sectionLinks = [
-    { name: "About", link: "/#about" },
-    { name: "Experience", link: "/#experience" },
-    { name: "Work", link: "/#work" },
-    { name: "Projects", link: "/#other-projects" },
-    {
-      name: "Contact",
-      link: "/#contact",
-    },
+    { name: "About", link: "#about", id: "about" },
+    { name: "Experience", link: "#experience", id: "experience" },
+    { name: "Work", link: "#work", id: "work" },
+    { name: "Projects", link: "#other-projects", id: "other-projects" },
+    { name: "Contact", link: "#contact", id: "contact" },
   ];
+  
+  // Set up intersection observer for each section
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all sections
+    sectionLinks.forEach(({ id }) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      window.pageYOffset > 100
-        ? setNavbarVisible(true)
-        : setNavbarVisible(false);
-    });
+    const handleScroll = () => {
+      setNavbarVisible(window.scrollY > 100);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -54,7 +80,7 @@ function Navbar() {
 
   return (
     <nav>
-      <div className={`wrapper ${navbarVisible ? "blur-nav" : ""}`}>
+      <div className={`wrapper ${navbarVisible ? "sticky-nav" : ""}`}>
         <motion.div
           className="brand"
           initial={{ opacity: 0 }}
@@ -99,7 +125,7 @@ function Navbar() {
           className={`${responsiveNavVisible && "nav-responsive"} nav-items`}
         >
           <ul className="nav-items-list">
-            {sectionLinks.map(({ name, link }, index) => (
+            {sectionLinks.map(({ name, link, id }, index) => (
               <motion.li
                 key={name}
                 className="nav-items-list-item"
@@ -113,15 +139,37 @@ function Navbar() {
                 whileHover={{ y: -5 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Link href={link} className="nav-items-list-item-link">
-                  <motion.span
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
-                  >
-                    {name}
-                  </motion.span>
-                </Link>
+                <Link 
+                href={link}
+                className={`nav-items-list-item-link ${activeSection === id ? 'active' : ''}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const target = document.getElementById(id);
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
+                <motion.span
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                  className="relative"
+                >
+                  {name}
+                  {activeSection === id && (
+                    <motion.span 
+                      className="absolute -bottom-1 left-0 w-full h-0.5 bg-theme"
+                      layoutId="activeSection"
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 30
+                      }}
+                    />
+                  )}
+                </motion.span>
+              </Link>
               </motion.li>
             ))}
           </ul>

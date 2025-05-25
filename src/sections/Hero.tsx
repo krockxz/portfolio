@@ -1,104 +1,134 @@
 import Button from "@/components/Button";
-import { motion } from "framer-motion";
-import React, { useState } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import CopyButton from "@/components/CopyButton"; 
 import { FiArrowDown } from 'react-icons/fi';
+import Typewriter from "@/components/Typewriter";
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.6, -0.05, 0.01, 0.99],
+    },
+  },
+};
+
+const hoverVariants = {
+  hover: {
+    scale: 1.02,
+    x: 10,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
 
 function Hero() {
   const [copied, setCopied] = useState(false);
   
-  const scrollToAbout = () => {
+  const scrollToAbout = useCallback(() => {
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
   
   return (
-    <div className="hero">
-      <div className="hero-content">
-        <motion.h1
-          className="hero-title"
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.3,
-            ease: "easeInOut",
-            delay: 0.6,
-          }}
-          whileHover={{ 
-            scale: 1.05, 
-            color: "var(--theme-color)",
-            transition: { duration: 0.2 } 
-          }}
-        >
-          Hi, my name is
-        </motion.h1>
-        <motion.h2
-          className="hero-title-large"
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.3,
-            ease: "easeInOut",
-            delay: 0.75,
-          }}
-          whileHover={{ 
-            scale: 1.02, 
-            x: 10,
-            transition: { duration: 0.2 } 
-          }}
-        >
-          Kunal Roy Choudhury.
-        </motion.h2>
-        <motion.h3
-          className="hero-title-large hero-title-sub"
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.3,
-            ease: "easeInOut",
-            delay: 1.05,
-          }}
-          whileHover={{ 
-            scale: 1.02, 
-            x: 10,
-            transition: { duration: 0.2 } 
-          }}
-        >
-          I craft exceptional digital experiences.
-        </motion.h3>
-        <motion.p
-          className="hero-text"
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.3,
-            ease: "easeInOut",
-            delay: 1.35,
-          }}
-          whileHover={{ 
-            y: -5,
-            transition: { duration: 0.2 } 
-          }}
-        >
-          I&apos;m an elite software engineer with expertise in creating top-notch
-          software solutions and experiences. My current focus is on developing innovative products that are
-          centered around user needs and pushing the boundaries of what&apos;s possible on the web.
-        </motion.p>
+    <section className="hero" id="home">
+      <motion.div 
+        className="hero-content"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
         <motion.div
+          className="hero-title-wrapper"
+          variants={itemVariants}
+        >
+          <motion.h1
+            className="hero-title"
+            whileHover={{ 
+              scale: 1.05, 
+              color: "var(--theme-color)",
+              transition: { duration: 0.2 } 
+            }}
+          >
+            <Typewriter text="Hi, my name is" delay={50}>
+              <span />
+            </Typewriter>
+          </motion.h1>
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <motion.h2
+            className="hero-title-large"
+            variants={hoverVariants}
+            whileHover="hover"
+          >
+            <Typewriter 
+              text="Kunal Roy Choudhury." 
+              delay={30} 
+              startDelay={1000}
+            >
+              <span className="inline-block" />
+            </Typewriter>
+          </motion.h2>
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <motion.h3
+            className="hero-title-large hero-title-sub"
+            variants={hoverVariants}
+            whileHover="hover"
+          >
+            <Typewriter 
+              text="I craft exceptional digital experiences." 
+              delay={30} 
+              startDelay={2000}
+            >
+              <span className="inline-block" />
+            </Typewriter>
+          </motion.h3>
+        </motion.div>
+        <motion.div variants={itemVariants}>
+          <motion.p
+            className="hero-text"
+            whileHover={{ 
+              y: -5,
+              transition: { duration: 0.2 } 
+            }}
+          >
+            <Typewriter 
+              text="I'm an elite software engineer with expertise in creating top-notch software solutions and experiences. My current focus is on developing innovative products that are centered around user needs and pushing the boundaries of what's possible on the web." 
+              delay={10}
+              startDelay={3000}
+            >
+              <span />
+            </Typewriter>
+          </motion.p>
+        </motion.div>
+        <motion.div 
           className="hero-button"
-          initial={{ opacity: 0, y: 5 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.3,
-            ease: "easeInOut",
-            delay: 1.65,
-          }}
+          variants={itemVariants}
         >  
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            className="relative group"
           >
             <Button 
               text="Check out my latest work" 
@@ -114,7 +144,7 @@ function Hero() {
             <CopyButton text="npx kunalrc" className="btn" />
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
       
       <motion.div 
         className="scroll-down-indicator"
@@ -135,7 +165,7 @@ function Hero() {
           <FiArrowDown />
         </button>
       </motion.div>
-    </div>
+    </section>
   );
 }
 

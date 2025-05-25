@@ -20,11 +20,24 @@ function Experience() {
 
   const expereinces = [
     {
+      name: "Indian Kanoon",
+      role: "Software Developer",
+      url: "https://indiankanoon.org/",
+      start: "April 2025",
+      end: "Present",
+      shortDescription: [
+        "Built a high-throughput Django digitization solution that accelerated the Servants of Knowledge initiative.",
+        "Implemented OCR functionality and image transformation frameworks to enhance text extraction.",
+        "Integrated GenAI solutions with legal corpus architecture, improving search relevance by 15%.",
+        "Engineered an API framework connecting the document processing pipeline with the legal search platform."
+      ],
+    },
+    {
       name: "Chargebee",
       role: "Software Engineer Intern",
       url: "https://www.chargebee.com/",
       start: "September 2024",
-      end: "Present",
+      end: "April 2025",
       shortDescription: [
         "Streamlined data migration with JOOQ-powered scheduler jobs, optimizing SQL query execution.",
         "Built and optimized customer data migration, leveraging Env properties for Business Entity mapping.",
@@ -37,7 +50,7 @@ function Experience() {
       role: "Software Engineer- Intern",
       url: "https://www.linkedin.com/company/aidash/",
       start: "January 2024",
-      end: "July 2024",
+      end: "September 2024",
       shortDescription: [
         "Designed and implemented RESTful APIs for data listing and retrieval, utilizing Java and Spring Boot, ensuring efficient data handling and service responsiveness.",
         "Engineered paging functionalities to optimize data fetch performance for large datasets, leveraging Spring Data JPA for seamless integration with backend systems.",
@@ -55,17 +68,6 @@ function Experience() {
         "Implemented responsive UI designs with cross-browser compatibility, ensuring optimal user experience across all platforms.",
         "Integrated Spring Security for robust authentication and authorization, protecting sensitive client data in enterprise deployments.",
         "Collaborated with cross-functional teams to deliver high-quality software solutions meeting business requirements."
-      ],
-    },
-    {
-      name: "Gagner Global",
-      role: "Software Developer - Intern",
-      url: "https://www.linkedin.com/company/gagner-global/?originalSubdomain=in",
-      start: "November 2018",
-      end: "November 2023",
-      shortDescription: [
-        "Worked on the development of a web-based CRM application using ReactJS and Node.js.",
-        "Implemented new features and enhancements to improve the user experience and performance of the application.",
       ],
     },
   ];

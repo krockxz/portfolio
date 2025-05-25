@@ -49,7 +49,14 @@ function About() {
           <div className="overlay"></div>
           <div className="overlay-border"></div>
           <div className="about-grid-photo-container">
-            <Image src="/kunal.jpg" alt="profile" fill />
+            <Image 
+              src="/kunal.jpg" 
+              alt="Profile picture of Kunal Roy Choudhury" 
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority
+              className="object-cover"
+            />
           </div>
         </div>
       </div>

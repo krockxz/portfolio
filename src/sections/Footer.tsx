@@ -5,22 +5,59 @@ import { FiGitBranch } from "react-icons/fi";
 import { motion } from "framer-motion";
 
 function Footer() {
-  const [githubInfo, setGitHubInfo] = useState({
+  const [githubInfo, setGitHubInfo] = useState<{
+    stars: number | null;
+    forks: number | null;
+  }>({
     stars: null,
     forks: null,
   });
 
   useEffect(() => {
-    fetch("https://github.com/krockxz")
-      .then((response) => response.json())
-      .then((json) => {
-        const { stargazers_count, forks_count } = json;
+    // Use GitHub API v4 (GraphQL) to avoid CORS issues
+    const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN; // Make sure to add this to your .env.local
+    const GITHUB_USERNAME = 'krockxz';
+    const GITHUB_REPO = 'portfolio';
+
+    const query = `
+      query {
+        repository(owner: "${GITHUB_USERNAME}", name: "${GITHUB_REPO}") {
+          stargazerCount
+          forkCount
+        }
+      }
+    `;
+
+    fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+      },
+      body: JSON.stringify({ query }),
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(({ data }) => {
+      if (data?.repository) {
         setGitHubInfo({
-          stars: stargazers_count,
-          forks: forks_count,
+          stars: data.repository.stargazerCount,
+          forks: data.repository.forkCount,
         });
-      })
-      .catch((e) => console.error(e));
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching GitHub data:', error);
+      // Set default values if API fails
+      setGitHubInfo({
+        stars: 0,
+        forks: 0,
+      });
+    });
   }, []);
 
   return (

@@ -28,10 +28,10 @@ function About() {
       <div className="about-grid">
         <div className="about-grid-info">
           <p className="about-grid-info-text">
-          Entering full-stack development, I am passionate about creating seamless user experiences. Motivated by a strong curiosity, I explore coding's depth, balancing front-end aesthetics with back-end functionality. Committed to continuous learning, I aim to convert ideas into practical solutions, focusing on code quality and efficiency
+          Full-stack developer entering the field with dangerous levels of optimism. I create user experiences that don't make people question their life choices, balancing pretty front-ends with back-ends that hopefully don't catch fire. Always learning because tech evolves faster than my debugging skills, I turn ideas into solutions that work beyond "it runs on localhost."
           </p>
           <p className="about-grid-info-text">  
-          Lately, I have been working with the following technologies to build innovative solutions:
+          Recent tech stack adventures (with varying degrees of success):
           </p>
           <ul className="about-grid-info-list">
             <li className="about-grid-info-list-item">Golang</li>
@@ -54,7 +54,6 @@ function About() {
               alt="Profile picture of Kunal Roy Choudhury" 
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority
               className="object-cover"
             />
           </div>

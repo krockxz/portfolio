@@ -18,7 +18,7 @@ function SocialIcons() {
     {
       name: "Twitter",
       icon: <FiTwitter />,
-      link: "https://twitter.com/Krockxz_",
+      link: "https://x.com/kunalgoesbyken",
     },
   ];
   return (

@@ -111,6 +111,7 @@ function Projects() {
                       alt={projectName} 
                       quality={100}
                       className="project-img" 
+                      sizes="(max-width: 600px) 350px, (max-width: 680px) 450px, 450px"
                     />
                   </div>
                 </div>

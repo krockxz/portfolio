@@ -91,7 +91,7 @@
         width: 350px;
         background-color: rgba(0, 176, 255, 0.2);
         mix-blend-mode: multiply;
-        border-radius: 0.2rem;
+        border-radius: 1rem;
       }
       .overlay-border {
         z-index: -3;
@@ -101,7 +101,7 @@
         border: 2px solid var(--theme-color);
         top: 1rem;
         left: 1rem;
-        border-radius: 0.2rem;
+        border-radius: 1rem;
         transition: 0.3s ease-in-out;
       }
       &-container {
@@ -113,7 +113,7 @@
           z-index: 0;
           filter: grayscale(100%) contrast(1.1);
           transition: 0.3s ease-in-out;
-          border-radius: 0.2rem;
+          border-radius: 1rem;
         }
       }
     }

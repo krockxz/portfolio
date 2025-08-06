@@ -69,25 +69,10 @@ function Hero() {
               transition: { duration: 0.2 } 
             }}
           >
-            <Typewriter text="Hi, my name is" delay={50}>
+            <Typewriter text="Hi," delay={50}>
               <span />
             </Typewriter>
           </motion.h1>
-        </motion.div>
-        <motion.div variants={itemVariants}>
-          <motion.h2
-            className="hero-title-large"
-            variants={hoverVariants}
-            whileHover="hover"
-          >
-            <Typewriter 
-              text="Kunal Roy Choudhury." 
-              delay={30} 
-              startDelay={1000}
-            >
-              <span className="inline-block" />
-            </Typewriter>
-          </motion.h2>
         </motion.div>
         <motion.div variants={itemVariants}>
           <motion.h3
@@ -96,9 +81,9 @@ function Hero() {
             whileHover="hover"
           >
             <Typewriter 
-              text="I craft exceptional digital experiences." 
+              text="I'm Kunal" 
               delay={30} 
-              startDelay={2000}
+              startDelay={1500}
             >
               <span className="inline-block" />
             </Typewriter>
@@ -113,9 +98,9 @@ function Hero() {
             }}
           >
             <Typewriter 
-              text="I'm an elite software engineer with expertise in creating top-notch software solutions and experiences. My current focus is on developing innovative products that are centered around user needs and pushing the boundaries of what's possible on the web." 
+              text="Powered by caffeine, curiosity, and a healthy respect for Stack Overflow. I enjoy the entire journey of taking a project from a rough concept to a polished, real-world application, one commit at a time." 
               delay={10}
-              startDelay={3000}
+              startDelay={2500}
             >
               <span />
             </Typewriter>

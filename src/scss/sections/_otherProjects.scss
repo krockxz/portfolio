@@ -127,6 +127,16 @@
         position: relative;
         display: inline-block;
         
+        a {
+          color: var(--lightest-slate);
+          text-decoration: none;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            color: var(--theme-color);
+          }
+        }
+        
         &::after {
           content: '';
           position: absolute;

@@ -47,7 +47,8 @@ function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setNavbarVisible(window.scrollY > 100);
+      const scrollY = window.scrollY;
+      setNavbarVisible(scrollY > 50);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -104,90 +105,130 @@ function Navbar() {
             duration: 0.3,
             ease: "easeInOut",
           }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          role="button"
+          aria-label={responsiveNavVisible ? "Close menu" : "Open menu"}
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setResponsiveNavVisible(!responsiveNavVisible);
+            }
+          }}
         >
-          {responsiveNavVisible ? (
-            <CgClose
-              onClick={(e) => {
-                e.stopPropagation();
-                setResponsiveNavVisible(false);
-              }}
-            />
-          ) : (
-            <GiHamburgerMenu
-              onClick={(e) => {
-                e.stopPropagation();
-                setResponsiveNavVisible(true);
-              }}
-            />
-          )}
+          <AnimatePresence mode="wait">
+            {responsiveNavVisible ? (
+              <motion.div
+                key="close"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <CgClose
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setResponsiveNavVisible(false);
+                  }}
+                />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ rotate: 90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                exit={{ rotate: -90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <GiHamburgerMenu
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setResponsiveNavVisible(true);
+                  }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
-        <div
-          className={`${responsiveNavVisible && "nav-responsive"} nav-items`}
-        >
-          <ul className="nav-items-list">
-            {sectionLinks.map(({ name, link, id }, index) => (
-              <motion.li
-                key={name}
-                className="nav-items-list-item"
-                initial={{ opacity: 0, y: -25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.3,
-                  ease: "easeInOut",
-                  delay: 0.3 + index * 0.1,
-                }}
-                whileHover={{ y: -5 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link 
-                href={link}
-                className={`nav-items-list-item-link ${activeSection === id ? 'active' : ''}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const target = document.getElementById(id);
-                  if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
-                <motion.span
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
-                  className="relative"
-                >
-                  {name}
-                  {activeSection === id && (
-                    <motion.span 
-                      className="absolute -bottom-1 left-0 w-full h-0.5 bg-theme"
-                      layoutId="activeSection"
-                      transition={{
-                        type: "spring",
-                        stiffness: 380,
-                        damping: 30
-                      }}
-                    />
-                  )}
-                </motion.span>
-              </Link>
-              </motion.li>
-            ))}
-          </ul>
+        <AnimatePresence>
           <motion.div
-            className="nav-items-button"
-            initial={{ opacity: 0, y: -25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.3,
-              ease: "easeInOut",
-              delay: 0.6,
+            className={`${responsiveNavVisible && "nav-responsive"} nav-items`}
+            initial={false}
+            animate={responsiveNavVisible ? "open" : "closed"}
+            variants={{
+              open: { opacity: 1, scale: 1 },
+              closed: { opacity: 1, scale: 1 }
             }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <Button text="Resume" link="/resume.pdf" target="_blank" />
+            <ul className="nav-items-list" role="navigation" aria-label="Main navigation">
+              {sectionLinks.map(({ name, link, id }, index) => (
+                <motion.li
+                  key={name}
+                  className="nav-items-list-item"
+                  initial={{ opacity: 0, y: -25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.4,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    delay: 0.2 + index * 0.1,
+                  }}
+                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Link 
+                    href={link}
+                    className={`nav-items-list-item-link ${activeSection === id ? 'active' : ''}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const target = document.getElementById(id);
+                      if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        setResponsiveNavVisible(false);
+                      }
+                    }}
+                    aria-current={activeSection === id ? 'page' : undefined}
+                  >
+                    <motion.span
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+                      className="relative"
+                    >
+                      {name}
+                      {activeSection === id && (
+                        <motion.span 
+                          className="absolute -bottom-1 left-0 w-full h-0.5 bg-theme"
+                          layoutId="activeSection"
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30
+                          }}
+                        />
+                      )}
+                    </motion.span>
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+            <motion.div
+              className="nav-items-button"
+              initial={{ opacity: 0, y: -25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.4,
+                ease: [0.25, 0.46, 0.45, 0.94],
+                delay: 0.5,
+              }}
+              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button text="Resume" link="/resume.pdf" target="_blank" />
+            </motion.div>
           </motion.div>
-        </div>
+        </AnimatePresence>
       </div>
     </nav>
   );

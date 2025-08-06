@@ -1,5 +1,5 @@
 nav {
-  min-height: 80px;
+  min-height: 70px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -7,37 +7,54 @@ nav {
   position: fixed;
   top: 0;
   z-index: 11;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: 15px 20px;
   
   .wrapper {
+    max-width: 1200px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 50px;
-    transition: all 0.3s ease;
+    padding: 0 32px;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
-    background-color: rgba(10, 25, 47, 0.85);
-    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
+    background-color: rgba(10, 25, 47, 0.1);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 16px;
+    @supports ((-webkit-backdrop-filter: blur(20px)) or (backdrop-filter: blur(20px))) {
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
     }
-    height: 80px;
+    height: 70px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     
-    &.sticky-nav {
-      position: fixed;
+    &::before {
+      content: '';
+      position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      background-color: rgba(10, 25, 47, 0.95);
-      @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
-        -webkit-backdrop-filter: blur(10px);
-        backdrop-filter: blur(10px);
+      bottom: 0;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(100, 255, 218, 0.05) 0%, rgba(10, 25, 47, 0.05) 100%);
+      pointer-events: none;
+    }
+    
+    &.sticky-nav {
+      background-color: rgba(10, 25, 47, 0.2);
+      border: 1px solid rgba(100, 255, 218, 0.15);
+      @supports ((-webkit-backdrop-filter: blur(24px)) or (backdrop-filter: blur(24px))) {
+        -webkit-backdrop-filter: blur(24px);
+        backdrop-filter: blur(24px);
       }
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      padding: 0 50px;
-      animation: fadeInDown 0.5s ease-in-out;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(100, 255, 218, 0.1);
+      animation: fadeInDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(0);
+      
+      &::before {
+        background: linear-gradient(135deg, rgba(100, 255, 218, 0.08) 0%, rgba(10, 25, 47, 0.08) 100%);
+      }
     }
     
     @keyframes fadeInDown {
@@ -71,27 +88,44 @@ nav {
   .nav-responsive-toggle {
     display: none;
     color: var(--theme-color);
-    font-size: var(--tx2large);
+    font-size: var(--tlarge2);
+    padding: 8px;
+    border-radius: 8px;
+    min-height: 44px;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
     svg {
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       
       &:hover {
         color: var(--lightest-slate);
-        transform: rotate(90deg);
+        transform: rotate(90deg) scale(1.1);
+      }
+      
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+    
+    @media (hover: none) {
+      &:active {
+        background-color: rgba(100, 255, 218, 0.1);
       }
     }
   }
   
   .nav-items {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     align-items: center;
     
     &-list {
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
       list-style-type: none;
       
       &-item {
@@ -102,26 +136,48 @@ nav {
           font-family: var(--fira-code);
           font-weight: 500;
           position: relative;
-          padding: 10px;
+          padding: 12px 16px;
           text-decoration: none;
+          border-radius: 8px;
+          transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          min-height: 44px;
+          display: flex;
+          align-items: center;
           
           &::before {
             content: "";
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: 0;
-            left: 0;
+            bottom: 8px;
+            left: 16px;
             background-color: var(--theme-color);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 1px;
           }
           
-          &:hover, &.active {
+          &:hover {
             color: var(--theme-color);
+            background-color: rgba(100, 255, 218, 0.05);
+            transform: translateY(-2px);
             
             &::before {
-              width: 100%;
+              width: calc(100% - 32px);
             }
+          }
+          
+          &.active {
+            color: var(--theme-color);
+            background-color: rgba(100, 255, 218, 0.1);
+            
+            &::before {
+              width: calc(100% - 32px);
+            }
+          }
+          
+          &:focus-visible {
+            outline: 2px solid var(--theme-color);
+            outline-offset: 2px;
           }
           
           .active-indicator {
@@ -139,56 +195,126 @@ nav {
   }
   
   @media screen and (max-width: 768px) {
+    padding: 10px 15px;
+    
+    .wrapper {
+      padding: 0 24px;
+      height: 60px;
+      border-radius: 12px;
+    }
+    
     .nav-responsive-toggle {
-      display: block;
+      display: flex !important;
     }
     
     .nav-items {
       position: fixed;
       top: 0;
       right: -100%;
-      width: min(75vw, 400px);
+      width: min(80vw, 350px);
       height: 100vh;
-      background-color: var(--light-navy);
+      background-color: rgba(10, 25, 47, 0.15);
+      border-left: 1px solid rgba(100, 255, 218, 0.15);
+      @supports ((-webkit-backdrop-filter: blur(20px)) or (backdrop-filter: blur(20px))) {
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+      }
       flex-direction: column;
       justify-content: center;
-      gap: 3rem;
-      padding: 0 1rem;
-      transition: all 0.3s ease;
-      box-shadow: -10px 0 30px -15px rgba(0, 0, 0, 0.7);
+      gap: 2.5rem;
+      padding: 2rem 1.5rem;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: -20px 0 40px -10px rgba(0, 0, 0, 0.3);
       
       &.nav-responsive {
         right: 0;
+        animation: slideInFromRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      
+      @keyframes slideInFromRight {
+        from {
+          right: -100%;
+          opacity: 0;
+        }
+        to {
+          right: 0;
+          opacity: 1;
+        }
       }
       
       &-list {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 2.5rem;
+        gap: 1.5rem;
         
         &-item {
           width: 100%;
           
           &-link {
-            display: block;
-            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 20px;
             font-size: var(--tlarge);
+            border-radius: 12px;
+            min-height: 54px;
+            background-color: rgba(100, 255, 218, 0.03);
+            border: 1px solid rgba(100, 255, 218, 0.08);
             
             &::before {
               display: none;
+            }
+            
+            &:hover, &.active {
+              background-color: rgba(100, 255, 218, 0.1);
+              border-color: rgba(100, 255, 218, 0.2);
+              transform: translateY(-1px);
+            }
+            
+            &:active {
+              transform: scale(0.98);
             }
           }
         }
       }
       
       &-button {
-        width: 80%;
+        width: 90%;
+        align-self: center;
         
         .btn {
           width: 100%;
           display: flex;
           justify-content: center;
+          min-height: 48px;
+          border-radius: 12px;
+        }
+      }
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    padding: 8px 12px;
+    
+    .wrapper {
+      padding: 0 20px;
+      height: 56px;
+      border-radius: 10px;
+    }
+    
+    .nav-items {
+      width: min(85vw, 300px);
+      gap: 2rem;
+      padding: 1.5rem 1rem;
+      
+      &-list {
+        gap: 1.2rem;
+        
+        &-item-link {
+          padding: 14px 16px;
+          font-size: var(--tbase);
+          min-height: 50px;
         }
       }
     }

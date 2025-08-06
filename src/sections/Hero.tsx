@@ -1,9 +1,10 @@
 import Button from "@/components/Button";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import CopyButton from "@/components/CopyButton"; 
 import { FiArrowDown } from 'react-icons/fi';
 import Typewriter from "@/components/Typewriter";
+import KineticText from "@/components/KineticText";
 
 // Animation variants
 const containerVariants = {
@@ -41,6 +42,10 @@ const hoverVariants = {
 
 function Hero() {
   const [copied, setCopied] = useState(false);
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [0, 1000], [0, -200]);
+  const y2 = useTransform(scrollY, [0, 1000], [0, -100]);
+  const y3 = useTransform(scrollY, [0, 1000], [0, -50]);
   
   const scrollToAbout = useCallback(() => {
     const aboutSection = document.getElementById('about');
@@ -51,6 +56,19 @@ function Hero() {
   
   return (
     <section className="hero" id="home">
+      {/* Parallax Background Layers */}
+      <motion.div 
+        className="parallax-bg-layer-1"
+        style={{ y: y1 }}
+      />
+      <motion.div 
+        className="parallax-bg-layer-2"
+        style={{ y: y2 }}
+      />
+      <motion.div 
+        className="parallax-bg-layer-3"
+        style={{ y: y3 }}
+      />
       <motion.div 
         className="hero-content"
         initial="hidden"
@@ -75,19 +93,12 @@ function Hero() {
           </motion.h1>
         </motion.div>
         <motion.div variants={itemVariants}>
-          <motion.h3
+          <KineticText 
+            text="I'm Kunal" 
             className="hero-title-large hero-title-sub"
-            variants={hoverVariants}
-            whileHover="hover"
-          >
-            <Typewriter 
-              text="I'm Kunal" 
-              delay={30} 
-              startDelay={1500}
-            >
-              <span className="inline-block" />
-            </Typewriter>
-          </motion.h3>
+            delay={1.5}
+            staggerDelay={0.1}
+          />
         </motion.div>
         <motion.div variants={itemVariants}>
           <motion.p

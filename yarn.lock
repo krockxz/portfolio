@@ -403,9 +403,9 @@ callsites@^3.0.0:
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
 caniuse-lite@^1.0.30001579:
-  version "1.0.30001579"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001579.tgz"
-  integrity sha512-u5AUVkixruKHJjw/pj9wISlcMpgFWzSrczLZbrqBSxukQixmg0SJ5sZTpvaFvxU0HoQKd4yoyAogyrAz9pzJnA==
+  version "1.0.30001731"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001731.tgz"
+  integrity sha512-lDdp2/wrOmTRWuoB5DpfNkC0rJDU8DqRa6nYL6HK6sytw70QMopt/NIc/9SM7ylItlBWfACXk0tEn37UWM/+mg==
 
 chalk@^4.0.0:
   version "4.1.2"
@@ -1535,25 +1535,6 @@ next@^14.1.0:
     "@next/swc-win32-arm64-msvc" "14.1.0"
     "@next/swc-win32-ia32-msvc" "14.1.0"
     "@next/swc-win32-x64-msvc" "14.1.0"
-
-"nextjs-portfolio@file:":
-  version "0.1.0"
-  resolved "file:"
-  dependencies:
-    "@types/node" "^20.11.17"
-    "@types/react" "^18.2.55"
-    "@types/react-dom" "18.0.11"
-    copy-to-clipboard "^3.3.3"
-    eslint "8.35.0"
-    eslint-config-next "13.2.3"
-    framer-motion "^11.0.3"
-    nextjs-portfolio "file:"
-    react "^18.2.0"
-    react-dom "^18.2.0"
-    react-icons "^4.8.0"
-    react-intersection-observer "^9.4.3"
-    react-toastify "^10.0.5"
-    typescript "^5.3.3"
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"

@@ -37,6 +37,8 @@
       justify-content: flex-end;
       transition: transform 0.3s ease;
       
+
+      
       
       &-image {
         &-container {
@@ -141,6 +143,23 @@
             
             &:hover {
               color: var(--theme-color);
+            }
+            
+            /* shadcn Badge integration */
+            .badge {
+              background-color: rgba(0, 176, 255, 0.08) !important;
+              color: var(--light-slate) !important;
+              border: 1px solid rgba(0, 176, 255, 0.2) !important;
+              font-family: var(--fira-code);
+              font-size: 0.85rem;
+              padding: 0.25rem 0.75rem;
+              border-radius: 3px;
+              transition: 0.2s ease;
+              
+              &:hover {
+                color: var(--theme-color) !important;
+                border-color: var(--theme-color) !important;
+              }
             }
           }
         }

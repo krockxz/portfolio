@@ -75,6 +75,39 @@
           }
         }
       }
+      
+      /* shadcn Badge integration for tech stack */
+      .flex.flex-wrap.gap-2 {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        
+        .badge {
+          background-color: rgba(0, 176, 255, 0.08) !important;
+          color: var(--light-slate) !important;
+          border: 1px solid rgba(0, 176, 255, 0.2) !important;
+          font-family: var(--fira-code);
+          font-size: 0.85rem;
+          padding: 0.5rem 1rem;
+          border-radius: 3px;
+          transition: 0.2s ease;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          
+          .tech-icon {
+            font-size: 1rem;
+            color: var(--theme-color);
+          }
+          
+          &:hover {
+            color: var(--theme-color) !important;
+            border-color: var(--theme-color) !important;
+            transform: translateY(-2px);
+          }
+        }
+      }
     }
     &-photo {
       position: relative;

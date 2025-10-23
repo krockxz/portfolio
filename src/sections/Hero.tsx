@@ -1,67 +1,56 @@
-import Button from "@/components/Button";
+import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useCallback } from 'react';
 import CopyButton from "@/components/CopyButton"; 
 import { FiArrowDown } from 'react-icons/fi';
 import KineticText from "@/components/KineticText";
 
-// Animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.3,
+// Reusable animation variants (DRY principle)
+const ANIMATION_VARIANTS = {
+  container: {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.3 },
     },
   },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.6, -0.05, 0.01, 0.99],
+  item: {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.6, -0.05, 0.01, 0.99] },
     },
   },
-};
+} as const;
 
 function Hero() {
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, -200]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, -100]);
-  const y3 = useTransform(scrollY, [0, 1000], [0, -50]);
+  const parallaxTransforms = [
+    useTransform(scrollY, [0, 1000], [0, -200]),
+    useTransform(scrollY, [0, 1000], [0, -100]),
+    useTransform(scrollY, [0, 1000], [0, -50])
+  ];
   
   const scrollToAbout = useCallback(() => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   }, []);
   
   return (
     <section className="hero" id="home">
       {/* Parallax Background Layers */}
-      <motion.div 
-        className="parallax-bg-layer-1"
-        style={{ y: y1 }}
-      />
-      <motion.div 
-        className="parallax-bg-layer-2"
-        style={{ y: y2 }}
-      />
-      <motion.div 
-        className="parallax-bg-layer-3"
-        style={{ y: y3 }}
-      />
+      {parallaxTransforms.map((transform, index) => (
+        <motion.div 
+          key={index}
+          className={`parallax-bg-layer-${index + 1}`}
+          style={{ y: transform }}
+        />
+      ))}
       <motion.div 
         className="hero-content"
         initial="hidden"
         animate="visible"
-        variants={containerVariants}
+        variants={ANIMATION_VARIANTS.container}
       >
         <motion.h1
           className="hero-title"
@@ -80,7 +69,7 @@ function Hero() {
         >
           Hi,
         </motion.h1>
-        <motion.div variants={itemVariants}>
+        <motion.div variants={ANIMATION_VARIANTS.item}>
           <KineticText 
             text="I'm Kunal" 
             className="hero-title-large hero-title-sub"
@@ -88,7 +77,7 @@ function Hero() {
             staggerDelay={0.1}
           />
         </motion.div>
-        <motion.div variants={itemVariants}>
+        <motion.div variants={ANIMATION_VARIANTS.item}>
           <motion.p
             className="hero-text"
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -108,14 +97,20 @@ function Hero() {
         </motion.div>
         <motion.div 
           className="hero-button"
-          variants={itemVariants}
+          variants={ANIMATION_VARIANTS.item}
         >  
           <Button 
-            text="Check out my latest work" 
-            link="https://github.com/krockxz?tab=repositories" 
-            target="_blank"
-            style={{ marginRight: '10px' }} 
-          />
+            asChild
+            className="mr-2"
+          >
+            <a 
+              href="https://github.com/krockxz?tab=repositories" 
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Check out my latest work
+            </a>
+          </Button>
           <CopyButton text="npx kunalrc" className="btn" />
         </motion.div>
       </motion.div>

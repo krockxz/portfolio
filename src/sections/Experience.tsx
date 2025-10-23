@@ -101,7 +101,11 @@ function Experience() {
       const items = document.querySelectorAll(".exp-slider-item");
       let topPosition = 0;
       for (let i = 0; i < selected; i++) {
-        topPosition += items[i].clientHeight; // Calculate the top position based on actual height
+        const item = items[i] as HTMLElement;
+        const computedStyle = window.getComputedStyle(item);
+        const itemHeight = item.clientHeight;
+        const marginBottom = parseFloat(computedStyle.marginBottom);
+        topPosition += itemHeight + marginBottom; // Include both height and margin
       }
       underline!.style.top = `${topPosition}px`; // Use px instead of rem for precision
     };

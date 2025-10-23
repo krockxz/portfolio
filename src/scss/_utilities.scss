@@ -1,0 +1,27 @@
+// Essential utilities only - KISS principle
+.section-spacing {
+  margin: 12rem 0;
+  
+  @media screen and (max-width: 768px) {
+    margin: 6rem 0;
+  }
+  
+  @media screen and (max-width: 480px) {
+    margin: 4rem 0;
+  }
+}
+
+.container-center {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

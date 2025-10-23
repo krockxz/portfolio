@@ -1,6 +1,6 @@
 .contact {
   max-width: 700px;
-  margin: 15rem auto;
+  margin: 12rem auto;
   display: flex;
   gap: 1rem;
   justify-content: center;
@@ -37,5 +37,14 @@
     .btn {
       padding: 1rem 2rem;
     }
+  }
+  
+  @media screen and (max-width: 768px) {
+    margin: 6rem auto;
+  }
+  
+  @media screen and (max-width: 480px) {
+    margin: 4rem auto;
+    padding: 0 1rem;
   }
 }

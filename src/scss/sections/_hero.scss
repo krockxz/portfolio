@@ -1,7 +1,6 @@
-// Hero section with gradient background and particle effect
 .hero {
   margin-top: 0;
-  padding-top: 8rem;
+  padding: 8rem 0 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,78 +8,8 @@
   justify-content: center;
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
   
-  // Multi-layer animated background
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-      circle at 30% 50%,
-      rgba(10, 25, 47, 0.9) 0%,
-      rgba(10, 25, 47, 1) 70%
-    );
-    z-index: -3;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-      radial-gradient(circle at 20% 30%, rgba(41, 182, 246, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 40% 80%, rgba(30, 144, 255, 0.12) 0%, transparent 50%);
-    animation: float 8s ease-in-out infinite;
-    z-index: -2;
-  }
-  
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) scale(1); }
-    50% { transform: translateY(-20px) scale(1.05); }
-  }
-  
-  // Parallax background layers
-  .parallax-bg-layer-1,
-  .parallax-bg-layer-2,
-  .parallax-bg-layer-3 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120%;
-    border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.3;
-  }
-  
-  .parallax-bg-layer-1 {
-    background: radial-gradient(circle, rgba(41, 182, 246, 0.2) 0%, transparent 70%);
-    z-index: -10;
-    top: 10%;
-    left: -20%;
-  }
-  
-  .parallax-bg-layer-2 {
-    background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, transparent 70%);
-    z-index: -9;
-    top: 60%;
-    right: -20%;
-  }
-  
-  .parallax-bg-layer-3 {
-    background: radial-gradient(circle, rgba(30, 144, 255, 0.18) 0%, transparent 70%);
-    z-index: -8;
-    bottom: 10%;
-    left: 40%;
-  }
+  // Clean hero section without background overlays
   
   &-content {
     display: flex;
@@ -92,44 +21,13 @@
     z-index: 1;
     padding: 3rem;
     border-radius: 20px;
-    background: linear-gradient(
-      135deg,
-      rgba(41, 182, 246, 0.08) 0%,
-      rgba(10, 25, 47, 0.4) 30%,
-      rgba(41, 182, 246, 0.03) 70%,
-      rgba(10, 25, 47, 0.6) 100%
-    );
-    backdrop-filter: blur(20px) saturate(1.8) brightness(1.1);
-    box-shadow: 
-      0 25px 50px -12px rgba(2, 12, 27, 0.8),
-      0 0 30px rgba(41, 182, 246, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      inset 0 -1px 0 rgba(41, 182, 246, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    // Subtle glow effect
-    &::before {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: -1px;
-      right: -1px;
-      bottom: -1px;
-      background: linear-gradient(
-        45deg,
-        rgba(41, 182, 246, 0.1),
-        transparent,
-        rgba(41, 182, 246, 0.1)
-      );
-      border-radius: 20px;
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
+    background: rgba(10, 25, 47, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
     
     &:hover {
-      border-color: rgba(41, 182, 246, 0.2);
+      background: rgba(10, 25, 47, 0.15);
     }
     
     @media (max-width: 768px) {
@@ -248,43 +146,15 @@
     animation: fadeInUp 0.6s ease-out 1s forwards;
     text-align: center;
     
-    // Enhanced background with gradient and glow
-    background: linear-gradient(
-      135deg,
-      rgba(41, 182, 246, 0.03) 0%,
-      rgba(41, 182, 246, 0.01) 50%,
-      rgba(41, 182, 246, 0.03) 100%
-    );
+    // Clean text styling without blue background
+    background: rgba(10, 25, 47, 0.05);
     padding: 2rem 2.5rem;
     border-radius: 16px;
-    border: 1px solid rgba(41, 182, 246, 0.1);
-    box-shadow: 
-      0 20px 40px -15px rgba(2, 12, 27, 0.8),
-      0 0 20px rgba(41, 182, 246, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(10px);
-    
-    // Subtle left accent line
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 3px;
-      height: 60%;
-      background: linear-gradient(
-        to bottom,
-        var(--theme-color),
-        rgba(41, 182, 246, 0.5)
-      );
-      border-radius: 0 2px 2px 0;
-      opacity: 0.8;
-    }
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
     
     &:hover {
-      border-color: rgba(41, 182, 246, 0.2);
+      background: rgba(10, 25, 47, 0.1);
     }
     
     // Text selection styling

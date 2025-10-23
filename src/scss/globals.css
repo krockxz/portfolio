@@ -21,12 +21,14 @@
   background: var(--theme-color);
 }
 
-html,
-body {
-  scroll-behavior: smooth !important;
+/* Smooth scrolling configuration */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 body {
+  scroll-behavior: smooth;
   background-color: var(--background-color);
   counter-reset: title;
 }
@@ -61,4 +63,15 @@ html {
   background-color: var(--dark-slate);
   border: 3px solid var(--background-color);
   border-radius: 10px;
+}
+
+/* Essential mobile optimizations */
+html, body {
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    scroll-padding-top: 70px;
+  }
 }

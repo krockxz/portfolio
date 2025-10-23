@@ -1,5 +1,5 @@
 .experience {
-  margin: 15rem auto;
+  margin: 12rem auto;
   max-width: 800px;
   .title {
     font-family: var(--raleway);
@@ -205,13 +205,13 @@
     }
   }
   @media screen and (max-width: 768px) {
-    margin: 8rem auto;
+    margin: 6rem auto;
     .container {
       grid-template-columns: 30% 70%;
     }
   }
   @media screen and (max-width: 600px) {
-    margin: 5rem auto;
+    margin: 4rem auto;
     .container {
       grid-template-columns: 1fr;
       padding: 1rem;

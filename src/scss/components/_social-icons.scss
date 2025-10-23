@@ -23,12 +23,8 @@
         }
         &:focus {
           outline-color: var(--theme-color);
-          transform: translateY(-4px);
           color: var(--theme-color);
         }
-      }
-      &:hover {
-        transform: translateY(-4px);
       }
       &:last-child {
         margin-bottom: 2rem;

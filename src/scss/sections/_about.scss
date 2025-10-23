@@ -56,13 +56,14 @@
           font-size: var(--tbase);
           color: var(--slate);
           position: relative;
-          &::before {
-            content: "▹";
-            position: absolute;
-            left: -20px;
-            top: 6px;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          
+          .tech-icon {
             color: var(--theme-color);
-            line-height: 12px;
+            font-size: 1.2rem;
+            flex-shrink: 0;
           }
         }
       }
@@ -72,13 +73,6 @@
       width: max-content;
       height: max-content;
       &:hover {
-        .overlay {
-          background-color: #00000000;
-        }
-        .overlay-border {
-          top: 0.5rem;
-          left: 0.5rem;
-        }
         img {
           filter: none;
         }

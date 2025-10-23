@@ -2,10 +2,35 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 import { useInView, motion } from "framer-motion";
+import { 
+  SiGoland, 
+  SiReact, 
+  SiNextdotjs, 
+  SiAmazonaws, 
+  SiDjango, 
+  SiMongodb, 
+  SiExpress, 
+  SiTypescript,
+  SiNodedotjs
+} from "react-icons/si";
 
 function About() {
   const ref = useRef(null);
   const isInView = useInView(ref);
+  
+  // Tech stack mapping with icons
+  const techStack = [
+    { name: "Golang", icon: SiGoland },
+    { name: "React", icon: SiReact },
+    { name: "Next.js & SSR", icon: SiNextdotjs },
+    { name: "AWS", icon: SiAmazonaws },
+    { name: "Django", icon: SiDjango },
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "MCP", icon: SiNodedotjs }, // Using Node.js icon as fallback for MCP
+    { name: "Express", icon: SiExpress },
+    { name: "TypeScript", icon: SiTypescript },
+  ];
+  
   useEffect(() => {
     console.log("Element is in view: ", isInView);
   }, [isInView]);
@@ -34,15 +59,15 @@ function About() {
           Recent tech stack adventures (with varying degrees of success):
           </p>
           <ul className="about-grid-info-list">
-            <li className="about-grid-info-list-item">Golang</li>
-            <li className="about-grid-info-list-item">React</li>
-            <li className="about-grid-info-list-item">Next.js & SSR</li>
-            <li className="about-grid-info-list-item">AWS</li>
-            <li className="about-grid-info-list-item">Django</li>
-            <li className="about-grid-info-list-item">MongoDB</li>
-            <li className="about-grid-info-list-item">MCP</li>
-            <li className="about-grid-info-list-item">Express</li>
-            <li className="about-grid-info-list-item">TypeScript</li>
+            {techStack.map((tech, index) => {
+              const IconComponent = tech.icon;
+              return (
+                <li key={index} className="about-grid-info-list-item">
+                  <IconComponent className="tech-icon" />
+                  {tech.name}
+                </li>
+              );
+            })}
           </ul>
         </div>
         <div className="about-grid-photo">

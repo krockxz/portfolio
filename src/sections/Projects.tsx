@@ -109,9 +109,10 @@ function Projects() {
                       src={image} 
                       fill 
                       alt={projectName} 
-                      quality={100}
+                      quality={95}
                       className="project-img" 
-                      sizes="(max-width: 600px) 350px, (max-width: 680px) 450px, 450px"
+                      sizes="(max-width: 600px) 320px, (max-width: 680px) 400px, (max-width: 1100px) 450px, 500px"
+                      priority={index < 2}
                     />
                   </div>
                 </div>

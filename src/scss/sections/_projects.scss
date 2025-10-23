@@ -37,17 +37,14 @@
       justify-content: flex-end;
       transition: transform 0.3s ease;
       
-      &:hover {
-        transform: translateY(-5px);
-      }
       
       &-image {
         &-container {
           position: relative;
-          width: 450px;
-          height: 225px;
+          width: 500px;
+          height: 300px;
           border-radius: 8px;
-          overflow: visible;
+          overflow: hidden;
           box-shadow: 0 10px 30px -15px var(--navy-shadow);
         }
         position: absolute;
@@ -56,12 +53,8 @@
         padding: 5px;
 
         &:hover {
-          .project-image-overlay {
-            background-color: rgba(0, 0, 0, 0.1);
-          }
           img {
             filter: none;
-            transform: scale(1.05);
           }
         }
         &-overlay {
@@ -80,7 +73,7 @@
           z-index: 0;
           filter: grayscale(100%) contrast(1.1);
           transition: 0.4s ease-in-out;
-          object-fit: cover;
+          object-fit: contain;
           width: 100%;
           height: 100%;
           border-radius: 8px;
@@ -89,11 +82,11 @@
       }
       &-info {
         z-index: 5;
-        width: 450px;
+        width: 500px;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        gap: 0.8rem;
+        gap: 1rem;
         &-overline {
           color: var(--theme-color);
           font-family: var(--fira-code);
@@ -148,8 +141,6 @@
             
             &:hover {
               color: var(--theme-color);
-              background-color: rgba(0, 176, 255, 0.15);
-              transform: translateY(-2px);
             }
           }
         }
@@ -172,12 +163,9 @@
               
               &:hover {
                 color: var(--theme-color);
-                background-color: rgba(0, 176, 255, 0.1);
-                transform: translateY(-3px);
               }
               &:focus {
                 outline-color: var(--theme-color);
-                transform: translateY(-4px);
                 color: var(--theme-color);
               }
             }
@@ -209,11 +197,15 @@
       align-items: center;
       .project {
         justify-content: flex-start;
+        .project-image {
+          &-container {
+            width: 450px;
+            height: 225px;
+          }
+        }
         .project-info {
           width: 450px;
-          height: 225px;
           background-color: rgba(31, 41, 55, 0.85);
-          backdrop-filter: blur(5px);
           align-items: flex-start;
           padding: 1.5rem;
           border-radius: 8px;
@@ -249,29 +241,12 @@
       .project {
         &-image {
           &-container {
-            width: 450px;
-            height: 225px;
-          }
-        }
-        .project-info {
-          width: 450px;
-          height: 225px;
-        }
-      }
-    }
-  }
-  @media screen and (max-width: 600px) {
-    &-container {
-      .project {
-        &-image {
-          &-container {
             width: 350px;
-            height: 400px;
+            height: 175px;
           }
         }
         .project-info {
           width: 350px;
-          height: 400px;
         }
       }
     }

@@ -1,9 +1,8 @@
 import Button from "@/components/Button";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useCallback } from 'react';
 import CopyButton from "@/components/CopyButton"; 
 import { FiArrowDown } from 'react-icons/fi';
-import Typewriter from "@/components/Typewriter";
 import KineticText from "@/components/KineticText";
 
 // Animation variants
@@ -30,18 +29,7 @@ const itemVariants = {
   },
 };
 
-const hoverVariants = {
-  hover: {
-    scale: 1.02,
-    x: 10,
-    transition: {
-      duration: 0.2,
-    },
-  },
-};
-
 function Hero() {
-  const [copied, setCopied] = useState(false);
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, -200]);
   const y2 = useTransform(scrollY, [0, 1000], [0, -100]);
@@ -75,23 +63,23 @@ function Hero() {
         animate="visible"
         variants={containerVariants}
       >
-        <motion.div
-          className="hero-title-wrapper"
-          variants={itemVariants}
+        <motion.h1
+          className="hero-title"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.6, 
+            delay: 0.3,
+            ease: [0.6, -0.05, 0.01, 0.99]
+          }}
+          whileHover={{ 
+            scale: 1.05, 
+            color: "var(--theme-color)",
+            transition: { duration: 0.2 } 
+          }}
         >
-          <motion.h1
-            className="hero-title"
-            whileHover={{ 
-              scale: 1.05, 
-              color: "var(--theme-color)",
-              transition: { duration: 0.2 } 
-            }}
-          >
-            <Typewriter text="Hi," delay={50}>
-              <span />
-            </Typewriter>
-          </motion.h1>
-        </motion.div>
+          Hi,
+        </motion.h1>
         <motion.div variants={itemVariants}>
           <KineticText 
             text="I'm Kunal" 
@@ -103,42 +91,32 @@ function Hero() {
         <motion.div variants={itemVariants}>
           <motion.p
             className="hero-text"
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ 
+              duration: 0.8, 
+              delay: 2.5,
+              ease: [0.6, -0.05, 0.01, 0.99]
+            }}
             whileHover={{ 
               y: -5,
               transition: { duration: 0.2 } 
             }}
           >
-            <Typewriter 
-              text="Powered by caffeine, curiosity, and a healthy respect for Stack Overflow. I enjoy the entire journey of taking a project from a rough concept to a polished, real-world application, one commit at a time." 
-              delay={10}
-              startDelay={2500}
-            >
-              <span />
-            </Typewriter>
+            Powered by caffeine, curiosity, and a healthy respect for Stack Overflow. I enjoy the entire journey of taking a project from a rough concept to a polished, real-world application, one commit at a time.
           </motion.p>
         </motion.div>
         <motion.div 
           className="hero-button"
           variants={itemVariants}
         >  
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative group"
-          >
-            <Button 
-              text="Check out my latest work" 
-              link="https://github.com/krockxz?tab=repositories" 
-              target="_blank"
-              style={{ marginRight: '10px' }} 
-            />
-          </motion.div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <CopyButton text="npx kunalrc" className="btn" />
-          </motion.div>
+          <Button 
+            text="Check out my latest work" 
+            link="https://github.com/krockxz?tab=repositories" 
+            target="_blank"
+            style={{ marginRight: '10px' }} 
+          />
+          <CopyButton text="npx kunalrc" className="btn" />
         </motion.div>
       </motion.div>
       

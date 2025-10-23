@@ -2,6 +2,7 @@ import Head from "next/head";
 import Email from "@/components/Email";
 import Loader from "@/components/Loader";
 import SocialIcons from "@/components/SocialIcons";
+import GitHubActivity from "@/components/GitHubActivity";
 import Footer from "@/sections/Footer";
 import Hero from "@/sections/Hero";
 import Navbar from "@/sections/Navbar";
@@ -35,6 +36,7 @@ function Index() {
           <main>
             <Hero />
             <About />
+            <GitHubActivity />
             <Experience />
             <Projects />
             <OtherProjects />

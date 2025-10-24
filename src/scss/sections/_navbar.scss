@@ -95,28 +95,24 @@ nav {
     font-size: var(--tlarge2);
     padding: 8px;
     border-radius: 8px;
-    min-height: 44px;
-    min-width: 44px;
+    min-height: var(--touch-target);
+    min-width: var(--touch-target);
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
     
     @media screen and (max-width: 768px) {
       display: flex !important;
     }
     
-    svg {
-      cursor: pointer;
-      transition: color 0.2s ease;
-      
-      &:hover {
-        color: var(--lightest-slate);
-      }
+    &:hover {
+      color: var(--lightest-slate);
     }
     
-    @media (hover: none) {
-      &:active {
-        background-color: rgba(100, 255, 218, 0.1);
-      }
+    &:active {
+      transform: scale(0.95);
+      background-color: rgba(100, 255, 218, 0.1);
     }
   }
   
@@ -266,8 +262,11 @@ nav {
   }
 
   .mobile-nav-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 18px 24px;
+    min-height: var(--touch-target);
     color: var(--lightest-slate);
     text-decoration: none;
     font-family: var(--fira-code);
@@ -277,20 +276,6 @@ nav {
     background: rgba(100, 255, 218, 0.03);
     border: 1px solid rgba(100, 255, 218, 0.1);
     transition: all 0.3s ease;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.1), transparent);
-      transition: left 0.5s ease;
-    }
 
     &:hover {
       background: rgba(100, 255, 218, 0.1);
@@ -298,13 +283,16 @@ nav {
       color: var(--theme-color);
     }
 
+    &:active {
+      transform: scale(0.95);
+      background: rgba(100, 255, 218, 0.15);
+    }
+
     &.active {
       background: rgba(100, 255, 218, 0.15);
       border-color: var(--theme-color);
       color: var(--theme-color);
-      box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
     }
-
   }
 
   .mobile-menu-footer {

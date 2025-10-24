@@ -8,8 +8,33 @@
   --txlarge: 25px;
   --tx2large: 32px;
   --tgiant: clamp(40px, 8vw, 80px);
-  @media screen and (max-width: 480px) {
-    --tx2large: 25px;
-    // --tgiant: 40px;
+  
+  /* Enhanced mobile typography scaling */
+  @media screen and (max-width: 768px) {
+    --tsm: 12px;
+    --tsm1: 13px;
+    --tsm2: 14px;
+    --tbase: 15px;
+    --tlarge: 16px;
+    --tlarge2: 18px;
+    --txlarge: 20px;
+    --tx2large: 24px;
+    --tgiant: clamp(32px, 6vw, 60px);
   }
+  
+  @media screen and (max-width: 480px) {
+    --tsm: 11px;
+    --tsm1: 12px;
+    --tsm2: 13px;
+    --tbase: 14px;
+    --tlarge: 15px;
+    --tlarge2: 16px;
+    --txlarge: 18px;
+    --tx2large: 20px;
+    --tgiant: clamp(28px, 5vw, 50px);
+  }
+  
+  /* Touch-friendly sizing */
+  --touch-target: 44px;
+  --touch-target-small: 36px;
 }

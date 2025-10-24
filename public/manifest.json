@@ -1,0 +1,27 @@
+{
+  "name": "Kunal Roy Choudhury - Full-stack Developer",
+  "short_name": "Kunal Roy",
+  "description": "Portfolio showcasing modern web development projects and skills",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#29b6f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/kunal.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/kunal.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "web"],
+  "lang": "en",
+  "dir": "ltr"
+}

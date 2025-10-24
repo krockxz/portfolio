@@ -1,41 +1,9 @@
-const withPWA = require('next-pwa')({
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === 'development',
-  runtimeCaching: [
-    {
-      urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-      handler: 'CacheFirst',
-      options: {
-        cacheName: 'google-fonts',
-        expiration: { maxEntries: 4, maxAgeSeconds: 365 * 24 * 60 * 60 }
-      }
-    },
-    {
-      urlPattern: /\.(?:jpg|jpeg|gif|png|svg|ico|webp)$/i,
-      handler: 'StaleWhileRevalidate',
-      options: {
-        cacheName: 'static-images',
-        expiration: { maxEntries: 64, maxAgeSeconds: 24 * 60 * 60 }
-      }
-    },
-    {
-      urlPattern: /^https:\/\/github\.com\/.*/i,
-      handler: 'NetworkFirst',
-      options: {
-        cacheName: 'github-api',
-        expiration: { maxEntries: 16, maxAgeSeconds: 60 * 60 },
-        networkTimeoutSeconds: 10
-      }
-    }
-  ]
-})
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  output: 'export',
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -62,4 +30,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withPWA(nextConfig)
+module.exports = nextConfig

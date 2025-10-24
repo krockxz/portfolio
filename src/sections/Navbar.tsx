@@ -3,7 +3,7 @@ import Logo from "@/components/Logo";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgClose } from "react-icons/cg";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from 'react-intersection-observer';
 
@@ -12,13 +12,13 @@ function Navbar() {
   const [responsiveNavVisible, setResponsiveNavVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   
-  const sectionLinks = [
+  const sectionLinks = useMemo(() => [
     { name: "About", link: "#about", id: "about" },
     { name: "Experience", link: "#experience", id: "experience" },
     { name: "Work", link: "#work", id: "work" },
     { name: "Projects", link: "#other-projects", id: "other-projects" },
     { name: "Contact", link: "#contact", id: "contact" },
-  ];
+  ], []);
   
   // Set up intersection observer for each section
   useEffect(() => {
@@ -43,7 +43,7 @@ function Navbar() {
     });
     
     return () => observer.disconnect();
-  }, []);
+  }, [sectionLinks]);
 
   useEffect(() => {
     const handleScroll = () => {

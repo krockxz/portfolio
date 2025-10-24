@@ -8,9 +8,6 @@ function About() {
   const ref = useRef(null);
   const isInView = useInView(ref);
   
-  useEffect(() => {
-    console.log("Element is in view: ", isInView);
-  }, [isInView]);
   return (
     <motion.div
       className="about"

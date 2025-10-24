@@ -58,7 +58,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
             duration: 0.6, 
-            delay: 0.3,
+            delay: 0.2,
             ease: [0.6, -0.05, 0.01, 0.99]
           }}
           whileHover={{ 
@@ -73,8 +73,8 @@ function Hero() {
           <KineticText 
             text="I'm Kunal" 
             className="hero-title-large hero-title-sub"
-            delay={1.5}
-            staggerDelay={0.1}
+            delay={0.8}
+            staggerDelay={0.05}
           />
         </motion.div>
         <motion.div variants={ANIMATION_VARIANTS.item}>
@@ -84,7 +84,7 @@ function Hero() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ 
               duration: 0.8, 
-              delay: 2.5,
+              delay: 1.4,
               ease: [0.6, -0.05, 0.01, 0.99]
             }}
             whileHover={{ 
@@ -122,7 +122,7 @@ function Hero() {
           opacity: 1,
           y: [0, 10, 0],
           transition: {
-            delay: 2.2,
+            delay: 1.8,
             duration: 1.5,
             repeat: Infinity,
             repeatType: "loop"

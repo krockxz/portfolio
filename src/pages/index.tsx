@@ -19,7 +19,7 @@ export default function Index() {
 
   const handleLoaderLoaded = () => {
     setIsLoading(false);
-    setTimeout(() => setShowContent(true), 450);
+    setTimeout(() => setShowContent(true), 200);
   };
 
   return (

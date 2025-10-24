@@ -215,8 +215,18 @@
     &-container {
       align-items: center;
       .project {
-        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        
         .project-image {
+          position: relative;
+          top: auto;
+          left: auto;
+          right: auto;
+          margin-bottom: 2rem;
+          
           &-container {
             width: 450px;
             height: 225px;
@@ -228,6 +238,8 @@
           align-items: flex-start;
           padding: 1.5rem;
           border-radius: 8px;
+          position: relative;
+          z-index: 2;
 
           &-description {
             background-color: transparent;
@@ -247,8 +259,8 @@
         }
         &:nth-of-type(even) {
           .project-image {
-            left: 0;
-            right: initial;
+            left: auto;
+            right: auto;
           }
         }
       }
@@ -258,7 +270,17 @@
     margin: 6rem 0;
     &-container {
       .project {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
         &-image {
+          position: relative;
+          top: auto;
+          left: auto;
+          right: auto;
+          margin-bottom: 1.5rem;
+          
           &-container {
             width: 350px;
             height: 175px;
@@ -266,6 +288,12 @@
         }
         .project-info {
           width: 350px;
+          background-color: rgba(31, 41, 55, 0.85);
+          align-items: flex-start;
+          padding: 1.25rem;
+          border-radius: 8px;
+          position: relative;
+          z-index: 2;
         }
       }
     }
@@ -284,6 +312,20 @@
       h2 {
         &::after {
           display: none;
+        }
+      }
+    }
+    &-container {
+      .project {
+        &-image {
+          &-container {
+            width: 320px;
+            height: 160px;
+          }
+        }
+        .project-info {
+          width: 320px;
+          padding: 1rem;
         }
       }
     }

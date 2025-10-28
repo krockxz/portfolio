@@ -82,15 +82,15 @@
     }
 
     &:hover {
-      transform: translateY(-8px);
+      transform: none;
       box-shadow: 
-        0 35px 70px -15px rgba(2, 12, 27, 0.9),
-        0 0 40px rgba(41, 182, 246, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      border-color: rgba(41, 182, 246, 0.3);
+        0 25px 50px -12px rgba(2, 12, 27, 0.8),
+        0 0 30px rgba(41, 182, 246, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border-color: rgba(41, 182, 246, 0.2);
       
       &::after {
-        opacity: 1;
+        opacity: 0;
       }
     }
   }
@@ -125,12 +125,7 @@
         color: var(--theme-color);
         flex-shrink: 0;
         filter: drop-shadow(0 0 10px rgba(41, 182, 246, 0.3));
-        transition: all 0.3s ease;
-
-        &:hover {
-          transform: scale(1.1) rotate(5deg);
-          filter: drop-shadow(0 0 15px rgba(41, 182, 246, 0.5));
-        }
+        transition: none;
       }
 
       .header-text {
@@ -230,13 +225,8 @@
             width: 14px;
             height: 14px;
             border-radius: 3px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-
-            &:hover {
-              transform: scale(1.3);
-              z-index: 10;
-            }
+            transition: none;
+            cursor: default;
           }
         }
       }
@@ -265,6 +255,15 @@
             height: 12px;
             border-radius: 3px;
           }
+        }
+
+        .inline-stats {
+          color: var(--light-slate);
+          font-family: var(--fira-code);
+          font-size: var(--tsm);
+          white-space: nowrap; // keep on one line
+          margin-left: 12px;
+          opacity: 0.9;
         }
       }
     }
@@ -324,13 +323,7 @@
       border-radius: 8px;
       border: 1px solid rgba(41, 182, 246, 0.3);
       background: rgba(41, 182, 246, 0.05);
-      transition: all 0.3s ease;
-
-      &:hover {
-        background: rgba(41, 182, 246, 0.1);
-        border-color: rgba(41, 182, 246, 0.5);
-        transform: translateY(-2px);
-      }
+      transition: none;
 
       .link-icon {
         font-size: 16px;

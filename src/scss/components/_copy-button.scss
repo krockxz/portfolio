@@ -37,6 +37,17 @@
     }
   }
   
+  /* size modifiers to align CTAs visually */
+  &--sm {
+    padding: 0.6em 1em;
+    font-size: calc(var(--tsm) - 1px);
+  }
+  
+  &--lg {
+    padding: 0.9em 1.6em;
+    font-size: calc(var(--tsm) + 1px);
+  }
+  
   &.copied {
     border-color: #4ade80;
     color: #4ade80;

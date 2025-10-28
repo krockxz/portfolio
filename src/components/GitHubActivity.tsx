@@ -142,11 +142,7 @@ const useGitHubActivity = () => {
 // Components
 const LoadingState = () => (
   <div className="github-activity loading">
-    <div className="activity-header">
-      <div className="header-content">
-        <FiGithub className="github-icon" />
-        <h2>GitHub Activity</h2>
-      </div>
+    <div className="activity-content">
       <div className="loading-spinner">Loading...</div>
     </div>
   </div>
@@ -154,11 +150,7 @@ const LoadingState = () => (
 
 const ErrorState = ({ error }: { error: string }) => (
   <div className="github-activity error">
-    <div className="activity-header">
-      <div className="header-content">
-        <FiGithub className="github-icon" />
-        <h2>GitHub Activity</h2>
-      </div>
+    <div className="activity-content">
       <div className="error-message">
         <p>Unable to load activity</p>
         <small>{error}</small>
@@ -174,7 +166,7 @@ const StatItem = ({ value, label }: { value: number; label: string }) => (
   </div>
 );
 
-const ContributionGrid = ({ contributions }: { contributions: ContributionDay[] }) => {
+const ContributionGrid = ({ contributions, totals, currentStreak, longestStreak }: { contributions: ContributionDay[]; totals: number; currentStreak: number; longestStreak: number; }) => {
   const gridData = useMemo(() => {
     const today = new Date();
     const startDate = new Date(today);
@@ -222,8 +214,6 @@ const ContributionGrid = ({ contributions }: { contributions: ContributionDay[] 
                   opacity: day.isFuture ? 0.3 : 1
                 }}
                 title={`${day.date}: ${day.count} contributions`}
-                whileHover={{ scale: 1.3 }}
-                transition={{ duration: 0.2 }}
               />
             ))}
           </div>
@@ -241,6 +231,7 @@ const ContributionGrid = ({ contributions }: { contributions: ContributionDay[] 
           ))}
         </div>
         <span>More</span>
+        <span className="inline-stats">{totals.toLocaleString()} contributions · {currentStreak} streak · {longestStreak} longest</span>
       </div>
     </div>
   );
@@ -257,8 +248,6 @@ const ActivityFooter = ({ username }: { username: string }) => (
       target="_blank"
       rel="noopener noreferrer"
       className="github-link"
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
     >
       <FiTrendingUp className="link-icon" />
       <span>View on GitHub</span>
@@ -282,24 +271,15 @@ const GitHubActivity: React.FC = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="activity-container">
-        <div className="activity-header">
-          <div className="header-content">
-            <FiGithub className="github-icon" />
-            <div className="header-text">
-              <h2>GitHub Activity</h2>
-              <p>{data.username}'s coding journey over the past year</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="activity-stats">
-          <StatItem value={data.totalContributions} label="Contributions" />
-          <StatItem value={data.currentStreak} label="Current Streak" />
-          <StatItem value={data.longestStreak} label="Longest Streak" />
-        </div>
+        {/* Header and stats removed as requested */}
 
         <div className="activity-content">
-          <ContributionGrid contributions={data.contributions} />
+          <ContributionGrid 
+            contributions={data.contributions}
+            totals={data.totalContributions}
+            currentStreak={data.currentStreak}
+            longestStreak={data.longestStreak}
+          />
         </div>
 
         <ActivityFooter username={data.username} />

@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useCallback } from 'react';
 import CopyButton from "@/components/CopyButton"; 
@@ -99,19 +98,15 @@ function Hero() {
           className="hero-button"
           variants={ANIMATION_VARIANTS.item}
         >  
-          <Button 
-            asChild
-            className="mr-2"
+          <a 
+            className="copy-btn copy-btn--lg mr-2"
+            href="https://github.com/krockxz?tab=repositories" 
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <a 
-              href="https://github.com/krockxz?tab=repositories" 
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Check out my latest work
-            </a>
-          </Button>
-          <CopyButton text="npx kunalrc" className="btn" />
+            Check out my latest work
+          </a>
+          <CopyButton text="npx kunalrc" className="copy-btn--sm" />
         </motion.div>
       </motion.div>
       

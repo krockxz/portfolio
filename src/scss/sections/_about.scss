@@ -1,19 +1,23 @@
 .about {
   margin: 12rem 0;
+
   .title {
     font-family: var(--raleway);
     color: var(--lightest-slate);
     position: relative;
+
     h2 {
       margin-bottom: 2rem;
       font-size: var(--tx2large);
       font-weight: 700;
+
       &::before {
         counter-increment: title;
         content: "0" counter(title) ".";
         margin-right: 0.5rem;
         color: var(--theme-color);
       }
+
       &::after {
         content: "";
         display: block;
@@ -27,14 +31,17 @@
       }
     }
   }
+
   &-grid {
     display: grid;
     grid-template-columns: 60% 40%;
     gap: 1rem;
+
     &-info {
       display: flex;
       flex-direction: column;
       gap: 1rem;
+
       &-text {
         color: var(--slate);
         margin-right: 10%;
@@ -44,12 +51,14 @@
         font-weight: 500;
         font-family: var(--raleway);
       }
+
       &-list {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         list-style-type: none;
         padding: 0 3rem;
         gap: 0.5rem;
+
         &-item {
           font-family: var(--raleway);
           line-height: 1.6rem;
@@ -62,7 +71,7 @@
           gap: 0.75rem;
           padding: 0.25rem 0;
           min-height: 2rem;
-          
+
           .tech-icon {
             color: var(--theme-color);
             font-size: 1.2rem;
@@ -75,14 +84,14 @@
           }
         }
       }
-      
+
       /* shadcn Badge integration for tech stack */
       .flex.flex-wrap.gap-2 {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
         margin-top: 1rem;
-        
+
         .badge {
           background-color: rgba(0, 176, 255, 0.08) !important;
           color: var(--light-slate) !important;
@@ -95,12 +104,12 @@
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          
+
           .tech-icon {
             font-size: 1rem;
             color: var(--theme-color);
           }
-          
+
           &:hover {
             color: var(--theme-color) !important;
             border-color: var(--theme-color) !important;
@@ -109,15 +118,18 @@
         }
       }
     }
+
     &-photo {
       position: relative;
       width: max-content;
       height: max-content;
+
       &:hover {
         img {
           filter: none;
         }
       }
+
       .overlay {
         transition: 0.3s ease-in-out;
         z-index: 1;
@@ -128,6 +140,7 @@
         mix-blend-mode: multiply;
         border-radius: 1rem;
       }
+
       .overlay-border {
         z-index: -3;
         height: 100%;
@@ -139,11 +152,13 @@
         border-radius: 1rem;
         transition: 0.3s ease-in-out;
       }
+
       &-container {
         position: relative;
         height: 350px;
         width: 350px;
         object-fit: cover;
+
         img {
           z-index: 0;
           filter: grayscale(100%) contrast(1.1);
@@ -153,19 +168,21 @@
       }
     }
   }
+
   @media screen and (max-width: 1080px) {
     margin: 8rem 0;
+
     &-grid {
       &-photo {
         .overlay {
-          height: 223px;
-          width: 223px;
+          @include responsive-container(223px, 1 / 1);
         }
+
         &-container {
-          height: 223px;
-          width: 223px;
+          @include responsive-container(223px, 1 / 1);
         }
       }
+
       &-info {
         &-list {
           grid-template-columns: repeat(2, 1fr);
@@ -175,8 +192,10 @@
       }
     }
   }
+
   @media screen and (max-width: 768px) {
     margin: 6rem 0;
+
     .title {
       h2 {
         &::after {
@@ -184,34 +203,39 @@
         }
       }
     }
+
     &-grid {
       &-photo {
         margin-top: 3rem;
+
         .overlay {
-          height: 300px;
-          width: 300px;
+          @include responsive-container(300px, 1 / 1);
         }
+
         &-container {
-          height: 300px;
-          width: 300px;
+          @include responsive-container(300px, 1 / 1);
         }
       }
+
       &-info {
         &-text {
           margin-right: 0;
         }
+
         &-list {
           grid-template-columns: 1fr;
           gap: 0.5rem;
           padding: 0;
         }
       }
+
       display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: column;
     }
   }
+
   @media screen and (max-width: 480px) {
     .title {
       h2 {
@@ -220,27 +244,28 @@
         }
       }
     }
+
     &-grid {
       &-photo {
         .overlay {
-          height: 223px;
-          width: 223px;
+          @include responsive-container(223px, 1 / 1);
         }
+
         &-container {
-          height: 223px;
-          width: 223px;
+          @include responsive-container(223px, 1 / 1);
         }
       }
+
       &-info {
         &-list {
           grid-template-columns: 1fr;
           gap: 0.25rem;
           padding: 0;
-          
+
           &-item {
             font-size: 0.9rem;
             gap: 0.5rem;
-            
+
             .tech-icon {
               font-size: 1rem;
               width: 1rem;

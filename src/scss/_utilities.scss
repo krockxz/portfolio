@@ -1,11 +1,11 @@
 // Essential utilities only - KISS principle
 .section-spacing {
   margin: 12rem 0;
-  
+
   @media screen and (max-width: 768px) {
     margin: 6rem 0;
   }
-  
+
   @media screen and (max-width: 480px) {
     margin: 4rem 0;
   }
@@ -24,4 +24,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@mixin responsive-container($max-width, $aspect-ratio: auto) {
+  width: 100%;
+  max-width: $max-width;
+  height: auto;
+  position: relative;
+
+  @if $aspect-ratio !=auto {
+    aspect-ratio: $aspect-ratio;
+  }
 }

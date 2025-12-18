@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiSend } from 'react-icons/fi';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { getWelcomeMessage, quickQuestions } from '@/lib/chatbot-context';
 import { streamChatResponse, Message } from '@/lib/chat-api';
 import styles from './ChatWidget.module.css';
@@ -158,7 +160,16 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onClose }) => {
                                 transition={{ duration: 0.2 }}
                             >
                                 <div className={styles.messageContent}>
-                                    {message.content}
+                                    <ReactMarkdown
+                                        remarkPlugins={[remarkGfm]}
+                                        components={{
+                                            a: ({ node, ...props }) => (
+                                                <a {...props} target="_blank" rel="noopener noreferrer" className={styles.link} />
+                                            )
+                                        }}
+                                    >
+                                        {message.content}
+                                    </ReactMarkdown>
                                 </div>
                                 <div className={styles.messageTime}>
                                     {message.timestamp.toLocaleTimeString([], {

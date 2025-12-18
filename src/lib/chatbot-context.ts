@@ -206,3 +206,10 @@ Remember: You're representing a real person to potential employers. Be authentic
 export function getWelcomeMessage(): string {
     return `Hi! I'm Kunal's AI assistant. I can answer questions about his experience, projects, tech skills, or anything else you'd like to know. What would you like to learn about?`;
 }
+
+export const quickQuestions = [
+    "Tell me about your projects",
+    "What is your tech stack?",
+    "How can I contact you?",
+    "Do you have a resume?"
+];

@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub } from 'react-icons/fi';
 
 // Types
 interface ContributionDay {
@@ -147,17 +146,7 @@ const LoadingState = () => (
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6 }}
   >
-    <div className="activity-container" style={{ minHeight: '450px' }}>
-      <div className="activity-header">
-        <div className="header-content">
-          <div className="skeleton-icon" style={{ width: 40, height: 40, background: 'rgba(41, 182, 246, 0.1)', borderRadius: '50%' }} />
-          <div className="header-text">
-            <div className="skeleton-title" style={{ width: 200, height: 32, background: 'rgba(41, 182, 246, 0.1)', marginBottom: 8, borderRadius: 4 }} />
-            <div className="skeleton-subtitle" style={{ width: 150, height: 20, background: 'rgba(41, 182, 246, 0.05)', borderRadius: 4 }} />
-          </div>
-        </div>
-      </div>
-
+    <div className="activity-container" style={{ minHeight: '200px' }}>
       <div className="activity-content">
         <div className="loading-spinner">Loading...</div>
       </div>
@@ -218,6 +207,18 @@ const ContributionGrid = ({ contributions, totals, currentStreak, longestStreak 
         });
       } else {
         months.push({ name: '', index: week });
+      }
+    }
+
+    // Filter months to avoid overcrowding, especially at the start
+    // If the first month label is excessively close to the second one (e.g., Dec starts at index 0, Jan at index 2),
+    // hide the first one.
+    const filledIndices = months.map((m, i) => m.name ? i : -1).filter(i => i !== -1);
+
+    if (filledIndices.length >= 2) {
+      if (filledIndices[1] - filledIndices[0] < 4) { // Less than 4 weeks gap
+        // Remove the first label (e.g. Dec) in favor of the second (e.g. Jan)
+        months[filledIndices[0]].name = '';
       }
     }
 
@@ -293,8 +294,6 @@ const GitHubActivity: React.FC = () => {
       transition={{ duration: 0.6 }}
     >
       <div className="activity-container">
-        {/* Header and stats removed as requested */}
-
         <div className="activity-content">
           <ContributionGrid
             contributions={data.contributions}

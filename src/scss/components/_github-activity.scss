@@ -5,20 +5,19 @@
   margin: 80px auto;
   position: relative;
 
-  &.loading, &.error {
+  &.loading,
+  &.error {
     .activity-header {
       padding: 40px;
-      background: linear-gradient(
-        135deg,
-        rgba(41, 182, 246, 0.08) 0%,
-        rgba(10, 25, 47, 0.6) 30%,
-        rgba(41, 182, 246, 0.03) 70%,
-        rgba(10, 25, 47, 0.8) 100%
-      );
+      background: linear-gradient(135deg,
+          rgba(41, 182, 246, 0.08) 0%,
+          rgba(10, 25, 47, 0.6) 30%,
+          rgba(41, 182, 246, 0.03) 70%,
+          rgba(10, 25, 47, 0.8) 100%);
       backdrop-filter: blur(20px) saturate(1.8);
       border-radius: 20px;
       border: 1px solid rgba(41, 182, 246, 0.2);
-      box-shadow: 
+      box-shadow:
         0 25px 50px -12px rgba(2, 12, 27, 0.8),
         0 0 30px rgba(41, 182, 246, 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -26,19 +25,17 @@
   }
 
   .activity-container {
-    background: linear-gradient(
-      135deg,
-      rgba(41, 182, 246, 0.08) 0%,
-      rgba(10, 25, 47, 0.6) 30%,
-      rgba(41, 182, 246, 0.03) 70%,
-      rgba(10, 25, 47, 0.8) 100%
-    );
+    background: linear-gradient(135deg,
+        rgba(41, 182, 246, 0.08) 0%,
+        rgba(10, 25, 47, 0.6) 30%,
+        rgba(41, 182, 246, 0.03) 70%,
+        rgba(10, 25, 47, 0.8) 100%);
     backdrop-filter: blur(20px) saturate(1.8) brightness(1.1);
     border: 1px solid rgba(41, 182, 246, 0.2);
     border-radius: 20px;
     overflow: hidden;
     position: relative;
-    box-shadow: 
+    box-shadow:
       0 25px 50px -12px rgba(2, 12, 27, 0.8),
       0 0 30px rgba(41, 182, 246, 0.05),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -51,14 +48,12 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        var(--theme-color),
-        rgba(41, 182, 246, 0.8),
-        var(--theme-color),
-        transparent
-      );
+      background: linear-gradient(90deg,
+          transparent,
+          var(--theme-color),
+          rgba(41, 182, 246, 0.8),
+          var(--theme-color),
+          transparent);
       border-radius: 20px 20px 0 0;
     }
 
@@ -69,12 +64,10 @@
       left: -1px;
       right: -1px;
       bottom: -1px;
-      background: linear-gradient(
-        45deg,
-        rgba(41, 182, 246, 0.1),
-        transparent,
-        rgba(41, 182, 246, 0.1)
-      );
+      background: linear-gradient(45deg,
+          rgba(41, 182, 246, 0.1),
+          transparent,
+          rgba(41, 182, 246, 0.1));
       border-radius: 20px;
       z-index: -1;
       opacity: 0;
@@ -83,119 +76,21 @@
 
     &:hover {
       transform: none;
-      box-shadow: 
+      box-shadow:
         0 25px 50px -12px rgba(2, 12, 27, 0.8),
         0 0 30px rgba(41, 182, 246, 0.05),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
       border-color: rgba(41, 182, 246, 0.2);
-      
+
       &::after {
         opacity: 0;
       }
     }
   }
 
-  .activity-header {
-    padding: 40px 40px 32px;
-    border-bottom: 1px solid rgba(41, 182, 246, 0.15);
-    position: relative;
 
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(41, 182, 246, 0.3),
-        transparent
-      );
-    }
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      gap: 20px;
 
-      .github-icon {
-        font-size: 36px;
-        color: var(--theme-color);
-        flex-shrink: 0;
-        filter: drop-shadow(0 0 10px rgba(41, 182, 246, 0.3));
-        transition: none;
-      }
-
-      .header-text {
-        h2 {
-          color: var(--lightest-slate);
-          font-size: clamp(1.8rem, 4vw, 2.2rem);
-          font-weight: 700;
-          margin: 0 0 8px 0;
-          letter-spacing: -0.5px;
-          font-family: var(--raleway);
-          background: linear-gradient(
-            135deg,
-            var(--lightest-slate) 0%,
-            rgba(209, 213, 219, 0.8) 50%,
-            var(--lightest-slate) 100%
-          );
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          text-shadow: 0 0 20px rgba(41, 182, 246, 0.1);
-        }
-
-        p {
-          color: var(--light-slate);
-          font-size: var(--tlarge);
-          margin: 0;
-          font-weight: 400;
-          font-family: var(--raleway);
-          letter-spacing: 0.02rem;
-          line-height: 1.6;
-        }
-      }
-    }
-  }
-
-  .activity-stats {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 32px 40px;
-    background: rgba(41, 182, 246, 0.02);
-    border-top: 1px solid rgba(41, 182, 246, 0.1);
-    border-bottom: 1px solid rgba(41, 182, 246, 0.1);
-    max-width: 600px;
-    margin: 0 auto;
-
-    .stat-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-
-      .stat-value {
-        color: var(--lightest-slate);
-        font-size: clamp(1.8rem, 4vw, 2.4rem);
-        font-weight: 700;
-        font-family: var(--raleway);
-        line-height: 1;
-      }
-
-      .stat-label {
-        color: var(--light-slate);
-        font-size: var(--tsm);
-        font-weight: 500;
-        font-family: var(--fira-code);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-    }
-  }
 
   .activity-content {
     padding: 40px;
@@ -204,27 +99,32 @@
     .contribution-grid {
       .grid-container {
         display: flex;
-        gap: 4px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 2px;
         margin-bottom: 20px;
         padding: 24px;
         background: rgba(10, 25, 47, 0.3);
         border-radius: 12px;
         border: 1px solid rgba(41, 182, 246, 0.1);
-        overflow-x: auto;
-        min-height: 120px;
-        max-width: 800px;
+        min-height: auto;
+        width: 100%;
+        max-width: 100%;
         margin-left: auto;
         margin-right: auto;
 
         .week-column {
           display: flex;
           flex-direction: column;
-          gap: 4px;
+          gap: 3px;
+          flex: 1;
+          min-width: 0;
 
           .contribution-day {
-            width: 14px;
-            height: 14px;
-            border-radius: 3px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            border-radius: 2px;
             transition: none;
             cursor: default;
           }
@@ -269,67 +169,7 @@
     }
   }
 
-  .activity-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 40px;
-    background: rgba(41, 182, 246, 0.02);
-    border-top: 1px solid rgba(41, 182, 246, 0.1);
-    flex-wrap: wrap;
-    gap: 20px;
-    max-width: 700px;
-    margin: 0 auto;
 
-    .offline-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--light-slate);
-      font-size: var(--tsm);
-      font-family: var(--fira-code);
-
-      .status-icon {
-        font-size: 16px;
-        color: var(--theme-color);
-      }
-
-      .cursor-icon {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        background: #ff6b35;
-        border-radius: 3px;
-        margin: 0 4px;
-        vertical-align: middle;
-      }
-
-      strong {
-        color: var(--lightest-slate);
-        font-weight: 600;
-      }
-    }
-
-    .github-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--theme-color);
-      text-decoration: none;
-      font-size: var(--tsm);
-      font-weight: 600;
-      font-family: var(--fira-code);
-      padding: 12px 20px;
-      border-radius: 8px;
-      border: 1px solid rgba(41, 182, 246, 0.3);
-      background: rgba(41, 182, 246, 0.05);
-      transition: none;
-
-      .link-icon {
-        font-size: 16px;
-      }
-    }
-  }
 
   .loading-spinner {
     color: var(--light-slate);
@@ -372,8 +212,13 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 // Responsive Design
@@ -391,76 +236,27 @@
     max-width: 95%;
 
     .activity-container {
-      .activity-header {
-        padding: 32px 24px 28px;
-
-        .header-content {
-          gap: 16px;
-
-          .github-icon {
-            font-size: 28px;
-          }
-
-          .header-text {
-            h2 {
-              font-size: clamp(1.5rem, 4vw, 1.8rem);
-            }
-
-            p {
-              font-size: var(--tbase);
-            }
-          }
-        }
-      }
-
-      .activity-stats {
-        flex-direction: column;
-        gap: 24px;
-        padding: 32px 24px;
-        max-width: 100%;
-
-        .stat-item {
-          .stat-value {
-            font-size: clamp(1.5rem, 4vw, 2rem);
-          }
-        }
-      }
-
       .activity-content {
         padding: 32px 24px;
 
         .contribution-grid {
           .grid-container {
             padding: 24px;
-            gap: 4px;
+            gap: 2px;
+            flex: 1;
             max-width: 100%;
 
             .week-column {
-              gap: 4px;
+              gap: 2px;
+              flex: 1;
 
               .contribution-day {
-                width: 14px;
-                height: 14px;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1 / 1;
               }
             }
           }
-        }
-      }
-
-      .activity-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-        padding: 28px 24px;
-        max-width: 100%;
-
-        .offline-status {
-          font-size: var(--tsm);
-        }
-
-        .github-link {
-          font-size: var(--tsm);
-          padding: 12px 20px;
         }
       }
     }
@@ -473,71 +269,27 @@
     max-width: 95%;
 
     .activity-container {
-      .activity-header {
-        padding: 24px 20px 20px;
-
-        .header-content {
-          gap: 12px;
-
-          .github-icon {
-            font-size: 24px;
-          }
-
-          .header-text {
-            h2 {
-              font-size: clamp(1.3rem, 4vw, 1.6rem);
-            }
-
-            p {
-              font-size: var(--tsm);
-            }
-          }
-        }
-      }
-
-      .activity-stats {
-        padding: 24px 20px;
-        max-width: 100%;
-
-        .stat-item {
-          .stat-value {
-            font-size: clamp(1.3rem, 3vw, 1.6rem);
-          }
-        }
-      }
-
       .activity-content {
         padding: 24px 20px;
 
         .contribution-grid {
           .grid-container {
             padding: 20px;
-            gap: 3px;
+            gap: 1px;
+            flex: 1;
             max-width: 100%;
 
             .week-column {
-              gap: 3px;
+              gap: 1px;
+              flex: 1;
 
               .contribution-day {
-                width: 12px;
-                height: 12px;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1 / 1;
               }
             }
           }
-        }
-      }
-
-      .activity-footer {
-        padding: 24px 20px;
-        max-width: 100%;
-
-        .offline-status {
-          font-size: var(--tsm);
-        }
-
-        .github-link {
-          font-size: var(--tsm);
-          padding: 10px 16px;
         }
       }
     }

@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Commented out to enable API routes for chatbot functionality
-  // If you need static export, uncomment the line below and remove API routes
-  // output: 'export',
+  transpilePackages: ["next-image-export-optimizer"],
   trailingSlash: true,
   images: {
     loader: "custom",

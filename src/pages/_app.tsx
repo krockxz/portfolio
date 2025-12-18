@@ -3,6 +3,7 @@ import "@/scss/index.scss";
 import type { AppProps } from "next/app";
 import { Raleway, Fira_Code } from "next/font/google";
 import Head from "next/head";
+import Chatbot from "@/components/Chatbot";
 
 const raleway = Raleway({ subsets: ["latin"] });
 const firaCode = Fira_Code({
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       <Component {...pageProps} />
+      <Chatbot />
     </>
   );
 }

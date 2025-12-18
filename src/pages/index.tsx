@@ -27,6 +27,24 @@ export default function Index() {
       <Head>
         <title>Kunal Roy Choudhury</title>
         <link rel="shortcut icon" href="/favicon.ico" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Kunal Roy Choudhury",
+              "url": "https://kunalroy.dev",
+              "sameAs": [
+                "https://github.com/krockxz",
+                "https://www.linkedin.com/in/kunal-roy-choudhury-7407211a7/",
+                "https://x.com/kunalgoesbyken"
+              ],
+              "jobTitle": "Full-Stack Developer",
+              "description": "Full-stack developer specializing in React, Node.js, and modern web technologies."
+            })
+          }}
+        />
       </Head>
       {showContent && (
         <>

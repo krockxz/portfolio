@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiSend } from 'react-icons/fi';
 import { getWelcomeMessage, quickQuestions } from '@/lib/chatbot-context';
@@ -121,10 +122,12 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onClose }) => {
                     {/* Header */}
                     <div className={styles.chatHeader}>
                         <div className={styles.headerInfo}>
-                            <img
+                            <Image
                                 src="/images/kunal.jpg"
                                 alt="Kunal"
                                 className={styles.headerAvatar}
+                                width={40}
+                                height={40}
                             />
                             <div>
                                 <h3 className={styles.headerTitle}>Kunal's AI Assistant</h3>

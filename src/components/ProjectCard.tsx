@@ -12,8 +12,8 @@ interface ProjectCardProps {
 }
 
 const ANIMATION_VARIANTS = {
-  hidden: { opacity: 0, y: 0 },
-  visible: { opacity: 1, y: -50 },
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
 } as const;
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
@@ -32,12 +32,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       <div className="project-image">
         <div className="project-image-overlay"></div>
         <div className="project-image-container">
-          <Image 
-            src={image} 
-            fill 
-            alt={projectName} 
+          <Image
+            src={image}
+            fill
+            alt={projectName}
             quality={95}
-            className="project-img" 
+            className="project-img"
             sizes="(max-width: 600px) 320px, (max-width: 680px) 400px, (max-width: 1100px) 450px, 500px"
             priority={index < 2}
           />

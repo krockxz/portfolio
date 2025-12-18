@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiClock, FiTrendingUp } from 'react-icons/fi';
+import { FiGithub } from 'react-icons/fi';
 
 // Types
 interface ContributionDay {
@@ -41,12 +41,12 @@ const calculateStreak = (contributions: ContributionDay[], fromToday = true): nu
   const today = new Date();
   let streak = 0;
   const contributionMap = new Map(contributions.map(c => [c.date, c]));
-  
+
   for (let i = 0; i < 365; i++) {
     const date = new Date(today);
     date.setDate(date.getDate() - i);
     const dateStr = date.toISOString().split('T')[0];
-    
+
     const day = contributionMap.get(dateStr);
     if (day && day.contributionCount > 0) {
       streak++;
@@ -54,7 +54,7 @@ const calculateStreak = (contributions: ContributionDay[], fromToday = true): nu
       break;
     }
   }
-  
+
   return streak;
 };
 
@@ -141,11 +141,28 @@ const useGitHubActivity = () => {
 
 // Components
 const LoadingState = () => (
-  <div className="github-activity loading">
-    <div className="activity-content">
-      <div className="loading-spinner">Loading...</div>
+  <motion.section
+    className="github-activity loading"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <div className="activity-container" style={{ minHeight: '450px' }}>
+      <div className="activity-header">
+        <div className="header-content">
+          <div className="skeleton-icon" style={{ width: 40, height: 40, background: 'rgba(41, 182, 246, 0.1)', borderRadius: '50%' }} />
+          <div className="header-text">
+            <div className="skeleton-title" style={{ width: 200, height: 32, background: 'rgba(41, 182, 246, 0.1)', marginBottom: 8, borderRadius: 4 }} />
+            <div className="skeleton-subtitle" style={{ width: 150, height: 20, background: 'rgba(41, 182, 246, 0.05)', borderRadius: 4 }} />
+          </div>
+        </div>
+      </div>
+
+      <div className="activity-content">
+        <div className="loading-spinner">Loading...</div>
+      </div>
     </div>
-  </div>
+  </motion.section>
 );
 
 const ErrorState = ({ error }: { error: string }) => (
@@ -159,33 +176,27 @@ const ErrorState = ({ error }: { error: string }) => (
   </div>
 );
 
-const StatItem = ({ value, label }: { value: number; label: string }) => (
-  <div className="stat-item">
-    <span className="stat-value">{value.toLocaleString()}</span>
-    <span className="stat-label">{label}</span>
-  </div>
-);
-
 const ContributionGrid = ({ contributions, totals, currentStreak, longestStreak }: { contributions: ContributionDay[]; totals: number; currentStreak: number; longestStreak: number; }) => {
   const gridData = useMemo(() => {
     const today = new Date();
     const startDate = new Date(today);
     startDate.setDate(startDate.getDate() - 365);
-    
+
     const contributionMap = new Map(contributions.map(c => [c.date, c]));
     const weeks = [];
-    
+    const months: { name: string; index: number }[] = [];
+
     for (let week = 0; week < 53; week++) {
       const weekDays = [];
       for (let day = 0; day < 7; day++) {
         const date = new Date(startDate);
         date.setDate(date.getDate() + (week * 7) + day);
         const dateStr = date.toISOString().split('T')[0];
-        
+
         const contribution = contributionMap.get(dateStr);
         const count = contribution ? contribution.contributionCount : 0;
         const level = getContributionLevel(count);
-        
+
         weekDays.push({
           date: dateStr,
           count,
@@ -195,16 +206,43 @@ const ContributionGrid = ({ contributions, totals, currentStreak, longestStreak 
         });
       }
       weeks.push(weekDays);
+
+      // Month calculation
+      const firstDayOfWeek = new Date(weekDays[0].date);
+      const prevWeekFirstDay = week > 0 ? new Date(new Date(startDate).setDate(new Date(startDate).getDate() + ((week - 1) * 7))) : null;
+
+      if (!prevWeekFirstDay || firstDayOfWeek.getMonth() !== prevWeekFirstDay.getMonth()) {
+        months.push({
+          name: firstDayOfWeek.toLocaleString('default', { month: 'short' }),
+          index: week
+        });
+      } else {
+        months.push({ name: '', index: week });
+      }
     }
-    
-    return weeks;
+
+    return { weeks, months };
   }, [contributions]);
 
   return (
     <div className="contribution-grid">
       <div className="grid-container">
-        {gridData.map((week, weekIndex) => (
-          <div key={weekIndex} className="week-column">
+        {gridData.weeks.map((week, weekIndex) => (
+          <div key={weekIndex} className="week-column" style={{ position: 'relative' }}>
+            {gridData.months[weekIndex].name && (
+              <span style={{
+                position: 'absolute',
+                top: '-20px',
+                left: 0,
+                color: 'var(--light-slate)',
+                fontSize: '12px',
+                fontFamily: 'var(--fira-code)',
+                whiteSpace: 'nowrap',
+                pointerEvents: 'none', // Prevent interference
+              }}>
+                {gridData.months[weekIndex].name}
+              </span>
+            )}
             {week.map((day, dayIndex) => (
               <motion.div
                 key={day.date}
@@ -237,23 +275,7 @@ const ContributionGrid = ({ contributions, totals, currentStreak, longestStreak 
   );
 };
 
-const ActivityFooter = ({ username }: { username: string }) => (
-  <div className="activity-footer">
-    <div className="offline-status">
-      <FiClock className="status-icon" />
-      <span>Offline in <span className="cursor-icon">📦</span> Cursor - Yesterday worked <strong>2h 56m</strong></span>
-    </div>
-    <motion.a
-      href={`https://github.com/${username}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="github-link"
-    >
-      <FiTrendingUp className="link-icon" />
-      <span>View on GitHub</span>
-    </motion.a>
-  </div>
-);
+
 
 // Main component
 const GitHubActivity: React.FC = () => {
@@ -264,7 +286,7 @@ const GitHubActivity: React.FC = () => {
   if (!data) return null;
 
   return (
-    <motion.section 
+    <motion.section
       className="github-activity"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -274,7 +296,7 @@ const GitHubActivity: React.FC = () => {
         {/* Header and stats removed as requested */}
 
         <div className="activity-content">
-          <ContributionGrid 
+          <ContributionGrid
             contributions={data.contributions}
             totals={data.totalContributions}
             currentStreak={data.currentStreak}
@@ -282,7 +304,6 @@ const GitHubActivity: React.FC = () => {
           />
         </div>
 
-        <ActivityFooter username={data.username} />
       </div>
     </motion.section>
   );

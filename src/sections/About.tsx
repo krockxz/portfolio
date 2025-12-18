@@ -7,7 +7,7 @@ import { techStack } from "@/data/techStack";
 function About() {
   const ref = useRef(null);
   const isInView = useInView(ref);
-  
+
   return (
     <motion.div
       className="about"
@@ -27,10 +27,10 @@ function About() {
       <div className="about-grid">
         <div className="about-grid-info">
           <p className="about-grid-info-text">
-          Full-stack developer entering the field with dangerous levels of optimism. I create user experiences that don't make people question their life choices, balancing pretty front-ends with back-ends that hopefully don't catch fire. Always learning because tech evolves faster than my debugging skills, I turn ideas into solutions that work beyond "it runs on localhost."
+            Full-stack developer entering the field with dangerous levels of optimism. I create user experiences that don't make people question their life choices, balancing pretty front-ends with back-ends that hopefully don't catch fire. Always learning because tech evolves faster than my debugging skills, I turn ideas into solutions that work beyond "it runs on localhost."
           </p>
-          <p className="about-grid-info-text">  
-          Recent tech stack adventures (with varying degrees of success):
+          <p className="about-grid-info-text">
+            Recent tech stack adventures (with varying degrees of success):
           </p>
           <div className="flex flex-wrap gap-2">
             {techStack.map((tech, index) => {
@@ -48,9 +48,9 @@ function About() {
           <div className="overlay"></div>
           <div className="overlay-border"></div>
           <div className="about-grid-photo-container">
-            <Image 
-              src="/kunal.jpg" 
-              alt="Profile picture of Kunal Roy Choudhury" 
+            <Image
+              src="/images/kunal.jpg"
+              alt="Profile picture of Kunal Roy Choudhury"
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"

@@ -3,73 +3,155 @@ import Logo from "@/components/Logo";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgClose } from "react-icons/cg";
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useInView } from 'react-intersection-observer';
 
 function Navbar() {
   const [navbarVisible, setNavbarVisible] = useState(false);
   const [responsiveNavVisible, setResponsiveNavVisible] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
-  
-  const sectionLinks = useMemo(() => [
-    { name: "About", link: "#about", id: "about" },
-    { name: "Experience", link: "#experience", id: "experience" },
-    { name: "Work", link: "#work", id: "work" },
-    { name: "Projects", link: "#other-projects", id: "other-projects" },
-    { name: "Contact", link: "#contact", id: "contact" },
-  ], []);
-  
-  // Set up intersection observer for each section
+  const [activeSection, setActiveSection] = useState("");
+  const [indicatorStyle, setIndicatorStyle] = useState({ width: 0, left: 0, opacity: 0 });
+  const navRefs = useRef<{ [key: string]: HTMLElement }>({});
+
+  const sectionLinks = useMemo(
+    () => [
+      { name: "About", link: "#about", id: "about" },
+      { name: "Experience", link: "#experience", id: "experience" },
+      { name: "Work", link: "#work", id: "work" },
+      { name: "Projects", link: "#other-projects", id: "other-projects" },
+      { name: "Contact", link: "#contact", id: "contact" },
+    ],
+    []
+  );
+
+  // Improved intersection observer with debouncing
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.5
+      rootMargin: "-10% 0px -60% 0px", // Trigger when section is near top
+      threshold: 0,
     };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    }, observerOptions);
-    
+
+    let visibleSectionId = "";
+    let timeoutId: NodeJS.Timeout;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleSectionId = entry.target.id;
+          }
+        });
+
+        // Debounce section changes to avoid flickering
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+          if (visibleSectionId) {
+            setActiveSection(visibleSectionId);
+          }
+        }, 50);
+      },
+      observerOptions
+    );
+
     // Observe all sections
     sectionLinks.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });
-    
-    return () => observer.disconnect();
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timeoutId);
+    };
   }, [sectionLinks]);
 
+  // Update active indicator position based on active link
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setNavbarVisible(scrollY > 50);
+    if (activeSection && navRefs.current[activeSection]) {
+      const activeElement = navRefs.current[activeSection];
+      const navList = activeElement.closest(".nav-items-list");
+
+      if (navList) {
+        const navRect = navList.getBoundingClientRect();
+        const itemRect = activeElement.getBoundingClientRect();
+
+        setIndicatorStyle({
+          width: itemRect.width,
+          left: itemRect.left - navRect.left,
+          opacity: 1,
+        });
+      }
+    } else {
+      setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }));
+    }
+  }, [activeSection]);
+
+  // Recalculate indicator position on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (activeSection && navRefs.current[activeSection]) {
+        const activeElement = navRefs.current[activeSection];
+        const navList = activeElement.closest(".nav-items-list");
+
+        if (navList) {
+          const navRect = navList.getBoundingClientRect();
+          const itemRect = activeElement.getBoundingClientRect();
+
+          setIndicatorStyle({
+            width: itemRect.width,
+            left: itemRect.left - navRect.left,
+            opacity: 1,
+          });
+        }
+      }
     };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [activeSection]);
+
+  // Handle scroll for navbar visibility
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          setNavbarVisible(scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close mobile menu on link click
   useEffect(() => {
-    const links = document.querySelectorAll(".nav-items-list-item-link");
+    const links = document.querySelectorAll(".nav-items-list-item-link, .mobile-nav-link");
     links.forEach((link) => {
       link.addEventListener("click", () => setResponsiveNavVisible(false));
     });
-    const nav = document.querySelector(".nav-items");
+
+    const nav = document.querySelector(".mobile-menu-content");
     nav?.addEventListener("click", (e) => {
       e.stopPropagation();
     });
-    const html = document.querySelector("html");
-    html?.addEventListener("click", (e) => {
-      setResponsiveNavVisible(false);
-    });
-  }, []);
 
+    const html = document.querySelector("html");
+    const handleOutsideClick = () => setResponsiveNavVisible(false);
+    html?.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      html?.removeEventListener("click", handleOutsideClick);
+    };
+  }, [responsiveNavVisible]);
+
+  // Add blur effect to main content when mobile menu is open
   useEffect(() => {
     const main = document.querySelector("main");
     if (responsiveNavVisible) {
@@ -78,6 +160,17 @@ function Navbar() {
       main?.classList.remove("blur");
     }
   }, [responsiveNavVisible]);
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) => {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <nav>
@@ -97,6 +190,7 @@ function Navbar() {
             <Logo />
           </Link>
         </motion.div>
+
         <motion.div
           className="nav-responsive-toggle"
           initial={{ opacity: 0, y: 5 }}
@@ -111,7 +205,7 @@ function Navbar() {
           aria-label={responsiveNavVisible ? "Close menu" : "Open menu"}
           tabIndex={0}
           onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
+            if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();
               setResponsiveNavVisible(!responsiveNavVisible);
             }
@@ -151,7 +245,7 @@ function Navbar() {
             )}
           </AnimatePresence>
         </motion.div>
-        
+
         {/* Desktop Navigation */}
         <div className="nav-items desktop-nav">
           <ul className="nav-items-list" role="navigation" aria-label="Main navigation">
@@ -169,41 +263,37 @@ function Navbar() {
                 whileHover={{ y: -3, transition: { duration: 0.2 } }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Link 
-                  href={link}
-                  className={`nav-items-list-item-link ${activeSection === id ? 'active' : ''}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const target = document.getElementById(id);
-                    if (target) {
-                      target.scrollIntoView({ behavior: 'smooth' });
-                    }
+                <Link
+                  ref={(el) => {
+                    if (el) navRefs.current[id] = el;
                   }}
-                  aria-current={activeSection === id ? 'page' : undefined}
+                  href={link}
+                  className={`nav-items-list-item-link ${
+                    activeSection === id ? "active" : ""
+                  }`}
+                  onClick={(e) => handleNavClick(e, id)}
+                  aria-current={activeSection === id ? "page" : undefined}
                 >
-                  <motion.span
-                    initial={{ opacity: 0, y: -5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
-                    className="relative"
-                  >
-                    {name}
-                    {activeSection === id && (
-                      <motion.span 
-                        className="absolute -bottom-1 left-0 w-full h-0.5 bg-theme"
-                        layoutId="activeSection"
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 30
-                        }}
-                      />
-                    )}
-                  </motion.span>
+                  {name}
                 </Link>
               </motion.li>
             ))}
+            {/* Shared active indicator with animated position */}
+            <motion.div
+              className="nav-active-indicator"
+              animate={{
+                width: indicatorStyle.width,
+                left: indicatorStyle.left,
+                opacity: indicatorStyle.opacity,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 30,
+              }}
+            />
           </ul>
+
           <motion.div
             className="nav-items-button"
             initial={{ opacity: 0, y: -25 }}
@@ -263,18 +353,16 @@ function Navbar() {
                         delay: 0.1 + index * 0.1,
                       }}
                     >
-                      <Link 
+                      <Link
                         href={link}
-                        className={`mobile-nav-link ${activeSection === id ? 'active' : ''}`}
+                        className={`mobile-nav-link ${
+                          activeSection === id ? "active" : ""
+                        }`}
                         onClick={(e) => {
-                          e.preventDefault();
-                          const target = document.getElementById(id);
-                          if (target) {
-                            target.scrollIntoView({ behavior: 'smooth' });
-                            setResponsiveNavVisible(false);
-                          }
+                          handleNavClick(e, id);
+                          setResponsiveNavVisible(false);
                         }}
-                        aria-current={activeSection === id ? 'page' : undefined}
+                        aria-current={activeSection === id ? "page" : undefined}
                       >
                         {name}
                       </Link>

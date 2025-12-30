@@ -1,20 +1,14 @@
 import Link from "next/link";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 
-// Move experiences array outside component to avoid dependency issues
-const expereinces = [
+const experiences = [
   {
     name: "Indian Kanoon",
     role: "Software Developer",
     url: "https://indiankanoon.org/",
     start: "April 2025",
     end: "Present",
-    shortDescription: [
-      "Built a high-throughput Django digitization solution that accelerated the Servants of Knowledge initiative.",
-      "Implemented OCR functionality and image transformation frameworks to enhance text extraction.",
-      "Integrated GenAI solutions with legal corpus architecture, improving search relevance by 15%.",
-      "Engineered an API framework connecting the document processing pipeline with the legal search platform."
-    ],
+    description: "Building high-performance document processing pipelines and integrating AI into the legal search engine. I focus on accelerating the digitization of regional law archives and improving search accuracy for millions of users.",
   },
   {
     name: "Chargebee",
@@ -22,12 +16,7 @@ const expereinces = [
     url: "https://www.chargebee.com/",
     start: "September 2024",
     end: "April 2025",
-    shortDescription: [
-      "Streamlined data migration with JOOQ-powered scheduler jobs, optimizing SQL query execution.",
-      "Built and optimized customer data migration, leveraging Env properties for Business Entity mapping.",
-      "Devised a sandbox data clearing system, reducing system overhead by a significant 30%.",
-      "Integrated an adaptive migration validation system in Vue.js, improving MBE configuration accuracy."
-    ],
+    description: "Refined large-scale data migration systems and optimized database interactions. I developed automated validation tools to ensure billing accuracy and performance across global customer environments.",
   },
   {
     name: "AiDash",
@@ -35,11 +24,7 @@ const expereinces = [
     url: "https://www.linkedin.com/company/aidash/",
     start: "January 2024",
     end: "September 2024",
-    shortDescription: [
-      "Designed and implemented RESTful APIs for data listing and retrieval, utilizing Java and Spring Boot, ensuring efficient data handling and service responsiveness.",
-      "Engineered paging functionalities to optimize data fetch performance for large datasets, leveraging Spring Data JPA for seamless integration with backend systems.",
-      "Crafted entity models and managed repositories, employing Spring Data for robust and scalable data access, supporting advanced query capabilities and pagination.",
-    ],
+    description: "Designed scalable APIs and data retrieval frameworks. I implemented efficient paging and filtering logic for massive datasets, ensuring smooth data access for enterprise utility management.",
   },
   {
     name: "PowerGrid",
@@ -47,24 +32,20 @@ const expereinces = [
     url: "https://www.powergrid.in/",
     start: "June 2023",
     end: "July 2023",
-    shortDescription: [
-      "Developed enterprise web applications using Spring Boot for rapid development and efficient microservices architecture.",
-      "Implemented responsive UI designs with cross-browser compatibility, ensuring optimal user experience across all platforms.",
-      "Integrated Spring Security for robust authentication and authorization, protecting sensitive client data in enterprise deployments.",
-      "Collaborated with cross-functional teams to deliver high-quality software solutions meeting business requirements."
-    ],
+    description: "Developed internal web tools to streamline project management and resource tracking. I focused on building secure, responsive interfaces for enterprise-level data visualization.",
   },
 ];
 
 function Experience() {
   const [selected, setSelected] = useState(0);
+  const underlineRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLUListElement>(null);
 
-  // Enhanced keyboard navigation handler
   const handleKeyDown = useCallback((e: React.KeyboardEvent, index: number) => {
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
-        setSelected(Math.min(index + 1, expereinces.length - 1));
+        setSelected(Math.min(index + 1, experiences.length - 1));
         break;
       case 'ArrowUp':
         e.preventDefault();
@@ -76,7 +57,7 @@ function Experience() {
         break;
       case 'End':
         e.preventDefault();
-        setSelected(expereinces.length - 1);
+        setSelected(experiences.length - 1);
         break;
       case 'Enter':
       case ' ':
@@ -87,57 +68,55 @@ function Experience() {
   }, []);
 
   useEffect(() => {
-    const transformSelected = () => {
-      const underline = document.querySelector<HTMLElement>(".underline");
-      const items = document.querySelectorAll(".exp-slider-item");
-      let topPosition = 0;
-      for (let i = 0; i < selected; i++) {
-        const item = items[i] as HTMLElement;
-        const computedStyle = window.getComputedStyle(item);
-        const itemHeight = item.clientHeight;
-        const marginBottom = parseFloat(computedStyle.marginBottom);
-        topPosition += itemHeight + marginBottom; // Include both height and margin
-      }
-      underline!.style.top = `${topPosition}px`; // Use px instead of rem for precision
+    const updateUnderline = () => {
+      const underline = underlineRef.current;
+      const container = containerRef.current;
+      if (!underline || !container) return;
+
+      const items = container.querySelectorAll(".exp-slider-item");
+      if (items.length === 0) return;
+
+      const selectedItem = items[selected] as HTMLElement;
+      if (!selectedItem) return;
+
+      underline.style.top = `${selectedItem.offsetTop}px`;
+      underline.style.height = `${selectedItem.offsetHeight}px`;
     };
-    transformSelected();
+    updateUnderline();
   }, [selected]);
+
+  const { role, url, name, start, end, description } = experiences[selected];
+
   return (
-    <div
-      className="experience"
-      id="experience"
-    >
+    <section className="experience" id="experience">
       <div className="title">
         <h2>Where I&apos;ve Worked</h2>
       </div>
       <div className="container">
-        <ul 
+        <ul
+          ref={containerRef}
           className="exp-slider"
           role="tablist"
           aria-label="Professional experience timeline"
         >
-          <div className="underline"></div>
-          {expereinces.map((expereince, index) => {
-            return (
-              <li
-                className={`exp-slider-item ${
-                  index === selected && "exp-slider-item-selected"
-                }`}
-                onClick={() => setSelected(index)}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-                key={expereince.name}
-                tabIndex={0}
-                role="tab"
-                aria-selected={selected === index}
-                aria-controls={`panel-${index}`}
-                id={`tab-${index}`}
-              >
-                <span>{expereince.name}</span>
-              </li>
-            );
-          })}
+          <div ref={underlineRef} className="underline" />
+          {experiences.map((exp, index) => (
+            <li
+              className={`exp-slider-item ${index === selected ? "exp-slider-item-selected" : ""}`}
+              onClick={() => setSelected(index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              key={exp.name}
+              tabIndex={0}
+              role="tab"
+              aria-selected={selected === index}
+              aria-controls={`panel-${index}`}
+              id={`tab-${index}`}
+            >
+              <span>{exp.name}</span>
+            </li>
+          ))}
         </ul>
-        <div 
+        <div
           className="exp-details"
           role="tabpanel"
           id={`panel-${selected}`}
@@ -146,33 +125,24 @@ function Experience() {
         >
           <div className="exp-details-position">
             <h3>
-              <span>{expereinces[selected].role}</span>
+              <span>{role}</span>
               <span className="exp-details-position-company">
                 &nbsp;@&nbsp;
-                <Link href={expereinces[selected].url} className="link" target="_blank" rel="noopener noreferrer">
-                  {expereinces[selected].name}
+                <Link href={url} className="link" target="_blank" rel="noopener noreferrer">
+                  {name}
                 </Link>
               </span>
             </h3>
             <p className="exp-details-range">
-              {expereinces[selected].start} - {expereinces[selected].end}
+              {start} - {end}
             </p>
-            <ul className="exp-details-list">
-              {expereinces[selected].shortDescription.map(
-                (description, index) => (
-                  <li 
-                    key={index} 
-                    className="exp-details-list-item"
-                  >
-                    {description}
-                  </li>
-                )
-              )}
-            </ul>
+            <p className="exp-details-description">
+              {description}
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

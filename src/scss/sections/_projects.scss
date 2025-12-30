@@ -4,20 +4,22 @@
   margin: 12rem 0;
 
   .title {
-    font-family: var(--raleway);
+    font-family: var(--display-font);
     color: var(--lightest-slate);
     position: relative;
 
     h2 {
       margin-bottom: 2rem;
       font-size: var(--tx2large);
-      font-weight: 700;
+      font-weight: 600;
 
       &::before {
         counter-increment: title;
         content: "0" counter(title) ".";
         margin-right: 0.5rem;
         color: var(--theme-color);
+        font-family: var(--code-font);
+        font-size: var(--tlarge);
       }
 
       &::after {
@@ -26,10 +28,9 @@
         position: absolute;
         top: 20px;
         width: 300px;
-        height: 2px;
+        height: 1px;
         margin-left: 420px;
         background: linear-gradient(90deg, var(--theme-color), transparent);
-        border-radius: 4px;
       }
     }
   }
@@ -43,25 +44,21 @@
       position: relative;
       display: flex;
       justify-content: flex-end;
-      transition: transform 0.3s ease;
-
-
-
 
       &-image {
         &-container {
           position: relative;
           width: 500px;
           height: 300px;
-          border-radius: 8px;
+          border-radius: 0;
           overflow: hidden;
-          box-shadow: 0 10px 30px -15px var(--navy-shadow);
+          box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
         }
 
         position: absolute;
         top: 0;
         left: 0;
-        padding: 5px;
+        padding: 4px;
 
         &:hover {
           img {
@@ -70,26 +67,16 @@
         }
 
         &-overlay {
-          transition: 0.3s ease-in-out;
-          z-index: 1;
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(0, 176, 255, 0.2);
-          mix-blend-mode: multiply;
-          border-radius: 8px;
-          top: 0;
-          left: 0;
+          display: none;
         }
 
         img {
           z-index: 0;
-          filter: grayscale(100%) contrast(1.1);
+          filter: none;
           transition: 0.4s ease-in-out;
           object-fit: contain;
           width: 100%;
           height: 100%;
-          border-radius: 8px;
           position: relative;
         }
       }
@@ -104,19 +91,21 @@
 
         &-overline {
           color: var(--theme-color);
-          font-family: var(--fira-code);
+          font-family: var(--code-font);
+          font-size: var(--tsm1);
           font-weight: 500;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
         }
 
         &-title {
           width: max-content;
           color: var(--lightest-slate);
           font-size: var(--txlarge);
-          font-family: var(--raleway);
-          font-weight: 700;
+          font-family: var(--display-font);
+          font-weight: 600;
           cursor: pointer;
-          transition: 0.3s ease-in-out;
+          transition: color 0.2s ease;
 
           a {
             color: inherit;
@@ -134,54 +123,29 @@
 
         &-description {
           background-color: var(--light-navy);
-          border-radius: 8px;
+          padding: 1.5rem;
           box-shadow: 0 10px 30px -15px var(--navy-shadow);
 
           p {
             color: var(--light-slate);
-            font-family: var(--raleway);
-            padding: 2rem;
+            font-family: var(--body-font);
+            font-size: 0.85rem;
             text-align: end;
             line-height: 1.5;
+            margin: 0;
           }
         }
 
         &-tech-list {
           display: flex;
           list-style-type: none;
-          gap: 1rem;
+          gap: 0.75rem;
           flex-wrap: wrap;
           justify-content: flex-end;
 
           &-item {
-            color: var(--light-slate);
-            font-family: var(--fira-code);
-            font-size: 0.85rem;
-            background-color: rgba(0, 176, 255, 0.08);
-            padding: 0.25rem 0.75rem;
-            border-radius: 3px;
-            transition: 0.2s ease;
-
-            &:hover {
-              color: var(--theme-color);
-            }
-
-            /* shadcn Badge integration */
-            .badge {
-              background-color: rgba(0, 176, 255, 0.08) !important;
-              color: var(--light-slate) !important;
-              border: 1px solid rgba(0, 176, 255, 0.2) !important;
-              font-family: var(--fira-code);
-              font-size: 0.85rem;
-              padding: 0.25rem 0.75rem;
-              border-radius: 3px;
-              transition: 0.2s ease;
-
-              &:hover {
-                color: var(--theme-color) !important;
-                border-color: var(--theme-color) !important;
-              }
-            }
+            display: flex;
+            align-items: center;
           }
         }
 
@@ -192,24 +156,14 @@
           gap: 1rem;
 
           &-item {
-            transition: 0.3s ease-in-out;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            transition: 0.2s ease;
 
             &-link {
-              padding: 10px;
-              color: var(--lightest-slate);
-              transition: 0.3s ease-in-out;
-              outline: 2px dashed transparent;
-              border-radius: 50%;
+              padding: 8px;
+              color: var(--light-slate);
+              transition: 0.2s ease;
 
               &:hover {
-                color: var(--theme-color);
-              }
-
-              &:focus {
-                outline-color: var(--theme-color);
                 color: var(--theme-color);
               }
             }
@@ -270,16 +224,16 @@
 
         .project-info {
           @include responsive-container(450px);
-          background-color: rgba(31, 41, 55, 0.85);
+          background-color: var(--light-navy);
           align-items: flex-start;
           padding: 1.5rem;
-          border-radius: 8px;
           position: relative;
           z-index: 2;
           box-shadow: 0 10px 30px -15px var(--navy-shadow);
 
           &-description {
             background-color: transparent;
+            padding: 0;
 
             p {
               padding: 0;
@@ -312,10 +266,6 @@
 
     &-container {
       .project {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
         &-image {
           position: relative;
           top: auto;
@@ -330,10 +280,8 @@
 
         .project-info {
           @include responsive-container(350px);
-          background-color: rgba(31, 41, 55, 0.85);
-          align-items: flex-start;
+          background-color: var(--light-navy);
           padding: 1.25rem;
-          border-radius: 8px;
           position: relative;
           z-index: 2;
         }

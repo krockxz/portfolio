@@ -2,6 +2,17 @@ import { Project } from "@/types/project";
 
 export const projectsData: Project[] = [
   {
+    image: "/images/project3.png",
+    projectName: "Gostman",
+    projectLink: "https://github.com/krockxz/gostman",
+    projectDescription: "A high-performance API testing tool built with Go, designed for microservice architectures. Gostman provides a powerful yet intuitive interface for creating, running, and automating complex API test scenarios. With support for various authentication methods, response validation, and comprehensive reporting, it streamlines the API development and testing workflow for modern applications.",
+    projectTech: ["Go", "RESTful APIs", "Testing", "Microservices"],
+    projectExternalLinks: {
+      github: "https://github.com/krockxz/gostman",
+      externalLink: "",
+    },
+  },
+  {
     image: "/images/project1.png",
     projectName: "Poker App",
     projectLink: "https://poker-borg.onrender.com/",
@@ -20,17 +31,6 @@ export const projectsData: Project[] = [
     projectTech: ["React", "Node.js", "Weather APIs", "Data Visualization"],
     projectExternalLinks: {
       github: "https://github.com/krockxz/Climatic",
-      externalLink: "",
-    },
-  },
-  {
-    image: "/images/project3.png",
-    projectName: "Gostman",
-    projectLink: "https://github.com/krockxz/gostman",
-    projectDescription: "A high-performance API testing tool built with Go, designed for microservice architectures. Gostman provides a powerful yet intuitive interface for creating, running, and automating complex API test scenarios. With support for various authentication methods, response validation, and comprehensive reporting, it streamlines the API development and testing workflow for modern applications.",
-    projectTech: ["Go", "RESTful APIs", "Testing", "Microservices"],
-    projectExternalLinks: {
-      github: "https://github.com/krockxz/gostman",
       externalLink: "",
     },
   },

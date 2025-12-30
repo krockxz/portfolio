@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FiFolder, FiGithub, FiExternalLink } from "react-icons/fi";
 import Link from "next/link";
+import TechIcon from "./TechIcon";
 
 interface OtherProjectCardProps {
     project: {
@@ -30,29 +31,15 @@ const OtherProjectCard: React.FC<OtherProjectCardProps> = ({ project, index }) =
                 visible: { opacity: 1, y: 0 },
                 hidden: { opacity: 0, y: 20 },
             }}
-            whileHover={{
-                y: -10,
-                transition: { duration: 0.2 },
-            }}
-            whileTap={{ scale: 0.98 }}
         >
             <header>
                 <div className="other-project-top">
-                    <motion.div
-                        className="folder"
-                        whileHover={{
-                            rotate: [0, -10, 10, -5, 0],
-                            transition: { duration: 0.4 },
-                        }}
-                    >
+                    <div className="folder">
                         <FiFolder />
-                    </motion.div>
+                    </div>
                     <div className="other-project-links">
                         {projectExternalLinks.github && (
-                            <motion.div
-                                whileHover={{ y: -5, scale: 1.1 }}
-                                transition={{ duration: 0.2 }}
-                            >
+                            <div>
                                 <Link
                                     href={projectExternalLinks.github}
                                     aria-label={`${projectName} GitHub link`}
@@ -61,13 +48,10 @@ const OtherProjectCard: React.FC<OtherProjectCardProps> = ({ project, index }) =
                                 >
                                     <FiGithub />
                                 </Link>
-                            </motion.div>
+                            </div>
                         )}
                         {projectExternalLinks.externalLink && (
-                            <motion.div
-                                whileHover={{ y: -5, scale: 1.1 }}
-                                transition={{ duration: 0.2 }}
-                            >
+                            <div>
                                 <Link
                                     href={projectExternalLinks.externalLink}
                                     aria-label={`${projectName} external link`}
@@ -76,7 +60,7 @@ const OtherProjectCard: React.FC<OtherProjectCardProps> = ({ project, index }) =
                                 >
                                     <FiExternalLink />
                                 </Link>
-                            </motion.div>
+                            </div>
                         )}
                     </div>
                 </div>
@@ -96,7 +80,9 @@ const OtherProjectCard: React.FC<OtherProjectCardProps> = ({ project, index }) =
             <footer>
                 <ul className="other-project-tech-list">
                     {projectTech.map((tech) => (
-                        <li key={tech}>{tech}</li>
+                        <li key={tech}>
+                            <TechIcon tech={tech} size={16} />
+                        </li>
                     ))}
                 </ul>
             </footer>

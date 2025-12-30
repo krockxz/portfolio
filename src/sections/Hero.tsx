@@ -28,6 +28,7 @@ function Hero() {
           <CopyButton text="npx kunalrc" className="copy-btn--sm" />
         </div>
       </div>
+      <div className="hero-aside" aria-hidden="true" />
     </section>
   );
 }

@@ -3,8 +3,8 @@ import Link from "next/link";
 import React from "react";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
 import { Project } from "@/types/project";
+import TechIcon from "./TechIcon";
 
 interface ProjectCardProps {
   project: Project;
@@ -27,7 +27,6 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
       variants={ANIMATION_VARIANTS}
-      whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
     >
       <div className="project-image">
         <div className="project-image-overlay"></div>
@@ -56,7 +55,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         <ul className="project-info-tech-list">
           {projectTech.map((tech) => (
             <li key={tech} className="project-info-tech-list-item">
-              <Badge variant="secondary">{tech}</Badge>
+              <TechIcon tech={tech} size={18} />
             </li>
           ))}
         </ul>

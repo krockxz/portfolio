@@ -1,13 +1,28 @@
-// Hero Section - KISS: Simple, clean layout optimized for all scaling factors
+// Hero Section - Arctic/Cold Minimal: Frosted glass, ice blue accents
 .hero {
-  min-height: 100dvh; // Uses dynamic viewport height for better browser chrome handling
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(4rem, 10vh, 8rem) 5%; // Responsive padding for 100%-125% scaling
+  padding: clamp(8rem, 12vh, 10rem) 5% clamp(4rem, 10vh, 8rem);
   gap: clamp(1.5rem, 4vh, 2.5rem);
   position: relative;
+
+  // Static accent line (scrolls with content)
+  &::before {
+    content: "";
+    position: absolute;
+    top: 94px;
+    /* Matches navbar height */
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--theme-color), transparent);
+    z-index: 10;
+  }
+
+
 
   &-content {
     display: flex;
@@ -16,10 +31,15 @@
     gap: clamp(1.5rem, 4vh, 2.5rem);
     max-width: min(1100px, 90%);
     width: 100%;
-    padding: clamp(2rem, 5vh, 3rem);
-    border-radius: 16px;
-    background: rgba(10, 25, 47, 0.05); // Simplified - removed backdrop-filter for better scaling
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: clamp(2.5rem, 5vh, 3.5rem);
+    border-radius: 0;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(125, 211, 252, 0.15);
+    backdrop-filter: blur(20px);
+
+    @supports ((-webkit-backdrop-filter: blur(20px)) or (backdrop-filter: blur(20px))) {
+      -webkit-backdrop-filter: blur(20px);
+    }
 
     @media (max-width: 768px) {
       padding: clamp(1.5rem, 4vh, 2rem);
@@ -32,35 +52,33 @@
     }
   }
 
-  // Small greeting - KISS: Simple styling, removed redundant animation
   &-title {
     color: var(--theme-color);
     font-size: var(--tsm2);
-    font-family: var(--fira-code);
+    font-family: var(--code-font);
     text-align: center;
-    font-weight: 500;
-    letter-spacing: 0.05rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
   }
 
-  // Main heading - YAGNI: Removed gradient complexity, nth-child rules, duplicate animations
   &-title-large {
-    font-size: clamp(2.5rem, 7vw, 5rem); // Better scaling for 125% zoom
-    font-family: var(--raleway);
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-family: var(--display-font);
     color: var(--lightest-slate);
-    font-weight: 700;
-    letter-spacing: -1.25px;
-    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1.05;
     margin: 0.25rem 0;
     text-align: center;
 
     @media (max-width: 768px) {
-      letter-spacing: -1px;
+      letter-spacing: -0.03em;
     }
 
     @media (max-width: 480px) {
-      letter-spacing: -0.5px;
+      letter-spacing: -0.02em;
     }
   }
 
@@ -68,21 +86,20 @@
     color: var(--lightest-slate);
   }
 
-  // Description text - DRY: Removed duplicate @media queries, dead ::before pseudo-element
   &-text {
     color: var(--light-slate);
     max-width: min(700px, 90%);
-    font-size: clamp(1rem, 1.5vw, var(--tlarge)); // Better scaling
-    line-height: 1.7;
-    font-family: var(--raleway);
+    font-size: clamp(1rem, 1.5vw, var(--tlarge));
+    line-height: 1.65;
+    font-family: var(--body-font);
     text-align: center;
-    background: rgba(10, 25, 47, 0.05);
+    background: rgba(125, 211, 252, 0.03);
     padding: clamp(1.25rem, 3vh, 1.75rem) clamp(1.5rem, 4vw, 2rem);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+    border: 1px solid rgba(125, 211, 252, 0.1);
 
     &::selection {
-      background: rgba(41, 182, 246, 0.3);
+      background: rgba(125, 211, 252, 0.25);
       color: var(--lightest-slate);
     }
 
@@ -94,11 +111,9 @@
     @media (max-width: 480px) {
       padding: 1rem 1.25rem;
       font-size: 1rem;
-      line-height: 1.6;
     }
   }
 
-  // Button container - Single source of truth (removed duplicate .hero-button class)
   &-button {
     display: flex;
     align-items: center;
@@ -120,28 +135,30 @@
   }
 }
 
-// Shared button styles - DRY: Single place for button styling, removed dead ::before
 .btn {
   background-color: transparent;
   color: var(--theme-color);
-  border: 1px solid var(--theme-color);
+  border: 1px solid rgba(125, 211, 252, 0.5);
   padding: clamp(0.75rem, 2vh, 1rem) clamp(1.5rem, 4vw, 2rem);
   font-size: clamp(0.875rem, 1.2vw, 1rem);
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
-  font-weight: 600;
-  letter-spacing: 0.02rem;
-  transition: background-color 0.2s ease;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(8px);
 
   &:hover {
-    background-color: rgba(41, 182, 246, 0.1);
+    background-color: rgba(125, 211, 252, 0.08);
+    border-color: var(--theme-color);
+    box-shadow: 0 0 20px rgba(125, 211, 252, 0.15);
   }
 
   &:focus-visible {
-    outline: 2px solid rgba(41, 182, 246, 0.5);
+    outline: 1px solid var(--theme-color);
     outline-offset: 2px;
   }
 }

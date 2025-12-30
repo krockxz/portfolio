@@ -3,7 +3,7 @@
   max-width: 800px;
 
   .title {
-    font-family: var(--raleway);
+    font-family: var(--display-font);
     color: var(--lightest-slate);
     position: relative;
     margin-bottom: 3rem;
@@ -11,13 +11,15 @@
     h2 {
       margin-bottom: 2rem;
       font-size: var(--tx2large);
-      font-weight: 700;
+      font-weight: 600;
 
       &::before {
         counter-increment: title;
         content: "0" counter(title) ".";
         margin-right: 0.5rem;
         color: var(--theme-color);
+        font-family: var(--code-font);
+        font-size: var(--tlarge);
       }
 
       &::after {
@@ -71,8 +73,8 @@
 
         span {
           color: var(--slate);
-          font-family: var(--fira-code);
-          font-size: var(--txsmall);
+          font-family: var(--code-font);
+          font-size: var(--tsm1);
           font-weight: 400;
           transition: color 0.2s ease;
         }
@@ -94,7 +96,7 @@
 
     .exp-details {
       min-height: 40vh;
-      font-family: var(--raleway);
+      font-family: var(--body-font);
       padding: 0.25rem 0;
 
       &-position {
@@ -123,16 +125,16 @@
 
       &-range {
         color: var(--light-slate);
-        font-family: var(--fira-code);
-        font-size: var(--txsmall);
+        font-family: var(--code-font);
+        font-size: var(--tsm);
         margin-bottom: 1rem;
         opacity: 0.8;
       }
 
       &-description {
         color: var(--slate);
-        font-family: var(--raleway);
-        font-size: var(--txmedium);
+        font-family: var(--body-font);
+        font-size: var(--tlarge);
         line-height: 1.7;
         max-width: 540px;
         font-weight: 400;
@@ -197,7 +199,7 @@
           padding: 0.5rem 1rem;
           height: auto;
           border: 1px solid var(--light-navy);
-          border-radius: 20px;
+          border-radius: 0;
           margin-bottom: 0;
           background: transparent;
           transition: all 0.2s ease;
@@ -216,7 +218,7 @@
             border-color: var(--theme-color);
 
             span {
-              color: var(--navy);
+              color: var(--background-color);
               font-weight: 500;
             }
           }

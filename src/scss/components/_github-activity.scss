@@ -4,44 +4,35 @@
   margin: 80px auto;
 
   .activity-container {
-    background: linear-gradient(135deg,
-        rgba(41, 182, 246, 0.08) 0%,
-        rgba(10, 25, 47, 0.6) 30%,
-        rgba(41, 182, 246, 0.03) 70%,
-        rgba(10, 25, 47, 0.8) 100%);
-    backdrop-filter: blur(20px) saturate(1.8) brightness(1.1);
-    border: 1px solid rgba(41, 182, 246, 0.2);
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.015);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(125, 211, 252, 0.1);
+    border-radius: 0;
     overflow: hidden;
     position: relative;
-    box-shadow:
-      0 25px 50px -12px rgba(2, 12, 27, 0.8),
-      0 0 30px rgba(41, 182, 246, 0.05),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease;
 
     &::before {
       content: '';
       position: absolute;
       inset: 0 auto auto 0;
-      height: 3px;
+      height: 1px;
       width: 100%;
       background: linear-gradient(90deg,
           transparent,
-          var(--theme-color),
-          rgba(41, 182, 246, 0.8),
           var(--theme-color),
           transparent);
     }
 
     &:hover {
-      border-color: rgba(41, 182, 246, 0.3);
+      border-color: rgba(125, 211, 252, 0.2);
     }
   }
 
   .activity-content {
     padding: 40px;
-    background: rgba(41, 182, 246, 0.01);
+    background: transparent;
 
     .contribution-grid {
       display: flex;
@@ -64,7 +55,7 @@
           span {
             color: var(--light-slate);
             font-size: 11px;
-            font-family: var(--fira-code);
+            font-family: var(--code-font);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -87,7 +78,7 @@
           .day-label {
             color: var(--light-slate);
             font-size: 10px;
-            font-family: var(--fira-code);
+            font-family: var(--code-font);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -113,7 +104,7 @@
             .contribution-day {
               width: 100%;
               aspect-ratio: 1 / 1;
-              border-radius: 2px;
+              border-radius: 0;
               transition: transform 0.15s ease;
               cursor: pointer;
 
@@ -134,7 +125,7 @@
         gap: 16px;
         padding: 16px 0 0;
         margin-top: 8px;
-        border-top: 1px solid rgba(41, 182, 246, 0.1);
+        border-top: 1px solid rgba(125, 211, 252, 0.08);
 
         .legend-main {
           display: flex;
@@ -144,7 +135,7 @@
           .legend-label {
             color: var(--light-slate);
             font-size: 11px;
-            font-family: var(--fira-code);
+            font-family: var(--code-font);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.3px;
@@ -157,7 +148,7 @@
             .legend-square {
               width: 11px;
               height: 11px;
-              border-radius: 2px;
+              border-radius: 0;
             }
           }
         }
@@ -176,14 +167,14 @@
             .stat-value {
               color: var(--theme-color);
               font-size: 13px;
-              font-family: var(--fira-code);
+              font-family: var(--code-font);
               font-weight: 600;
             }
 
             .stat-label {
               color: var(--light-slate);
               font-size: 11px;
-              font-family: var(--fira-code);
+              font-family: var(--code-font);
               font-weight: 400;
               text-transform: lowercase;
             }
@@ -205,30 +196,28 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    font-family: var(--fira-code);
+    font-family: var(--code-font);
     letter-spacing: 0.02rem;
 
     &::after {
       content: '';
       width: 24px;
       height: 24px;
-      border: 3px solid rgba(41, 182, 246, 0.2);
+      border: 3px solid rgba(125, 211, 252, 0.15);
       border-top-color: var(--theme-color);
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      filter: drop-shadow(0 0 8px rgba(41, 182, 246, 0.3));
     }
   }
 
   .error-message {
     color: #ff6b6b;
     font-size: var(--tlarge);
-    font-family: var(--fira-code);
+    font-family: var(--code-font);
 
     p {
       margin: 0 0 8px;
       font-weight: 600;
-      text-shadow: 0 0 10px rgba(255, 107, 107, 0.2);
     }
 
     small {

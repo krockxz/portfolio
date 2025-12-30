@@ -6,21 +6,28 @@
     right: 100px;
     width: 60px;
     height: 60px;
-    border-radius: 50%;
-    border: none;
-    background: linear-gradient(135deg, var(--theme-color), #64b5f6);
-    color: white;
+    border-radius: 0;
+    border: 1px solid rgba(125, 211, 252, 0.5);
+    /* Match .btn border */
+    background: transparent;
+    /* Match .btn bg */
+    backdrop-filter: blur(8px);
+    color: var(--theme-color);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 6px 20px rgba(41, 182, 246, 0.3);
+    box-shadow: none;
+    /* .btn has no shadow initially */
     z-index: 9998;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .chatButton:hover {
-    box-shadow: 0 8px 24px rgba(41, 182, 246, 0.4);
+    background-color: rgba(125, 211, 252, 0.08);
+    /* Match .btn:hover */
+    border-color: var(--theme-color);
+    box-shadow: 0 0 20px rgba(125, 211, 252, 0.15);
 }
 
 .chatButton:active {

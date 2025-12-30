@@ -116,10 +116,10 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onClose }) => {
             {isOpen && (
                 <motion.div
                     className={styles.chatWidget}
-                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.15 }}
                 >
                     {/* Header */}
                     <div className={styles.chatHeader}>
@@ -151,13 +151,10 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onClose }) => {
                     {/* Messages */}
                     <div className={styles.chatMessages}>
                         {messages.map((message) => (
-                            <motion.div
+                            <div
                                 key={message.id}
                                 className={`${styles.message} ${message.role === 'user' ? styles.userMessage : styles.assistantMessage
                                     }`}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.2 }}
                             >
                                 <div className={styles.messageContent}>
                                     <ReactMarkdown
@@ -177,7 +174,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onClose }) => {
                                         minute: '2-digit'
                                     })}
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
 
                         {messages.length === 1 && messages[0].role === 'assistant' && (
@@ -195,17 +192,13 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onClose }) => {
                         )}
 
                         {isLoading && (
-                            <motion.div
-                                className={`${styles.message} ${styles.assistantMessage}`}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                            >
+                            <div className={`${styles.message} ${styles.assistantMessage}`}>
                                 <div className={styles.typingIndicator}>
                                     <span></span>
                                     <span></span>
                                     <span></span>
                                 </div>
-                            </motion.div>
+                            </div>
                         )}
 
                         {error && (

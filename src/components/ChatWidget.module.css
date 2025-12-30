@@ -2,16 +2,16 @@
 
 .chatWidget {
   position: fixed;
-  bottom: 16px;
+  bottom: 24px;
   right: 24px;
   width: 420px;
   max-width: calc(100vw - 48px);
-  height: 700px;
-  max-height: calc(100vh - 40px);
+  height: 600px;
+  max-height: calc(100vh - 48px);
   background: rgba(17, 25, 40, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   display: flex;
@@ -67,19 +67,6 @@
   height: 8px;
   border-radius: 50%;
   background: #4caf50;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
 }
 
 .closeButton {
@@ -135,19 +122,6 @@
   display: flex;
   flex-direction: column;
   max-width: 85%;
-  animation: messageSlideIn 0.2s ease-out;
-}
-
-@keyframes messageSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .userMessage {
@@ -213,16 +187,10 @@
 }
 
 @keyframes typingDot {
-
-  0%,
-  60%,
-  100% {
-    transform: translateY(0);
+  0%, 100% {
     opacity: 0.5;
   }
-
-  30% {
-    transform: translateY(-8px);
+  50% {
     opacity: 1;
   }
 }
@@ -263,7 +231,6 @@
 .quickQuestionButton:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: var(--theme-color);
-  transform: translateX(4px);
 }
 
 /* Input Area */
@@ -322,12 +289,11 @@
 }
 
 .sendButton:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(41, 182, 246, 0.4);
+  box-shadow: 0 4px 12px rgba(41, 182, 246, 0.3);
 }
 
 .sendButton:active:not(:disabled) {
-  transform: translateY(0);
+  transform: scale(0.98);
 }
 
 .sendButton:disabled {
@@ -344,7 +310,7 @@
     left: 16px;
     width: auto;
     max-width: none;
-    height: calc(100vh - 40px);
+    height: calc(100vh - 32px);
     max-height: none;
   }
 
